@@ -46,7 +46,9 @@
     "npm": ">=2.0.0"
   },
   "devDependencies": {
-    "browserify": "latest"
+    "browserify": "latest",
+    "nodemon": "latest",
+    "uglify-js": "latest"
   },
   "license": "MIT"
 }
