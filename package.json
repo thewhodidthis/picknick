@@ -1,0 +1,52 @@
+{
+  "name": "picknick",
+  "version": "0.0.4",
+  "description": "Helps select things",
+  "author": "sChzs BkgNns <sotirios.bakagiannis@gmail.com> (http://thewhodidthis.com/)",
+  "homepage": "https://github.com/thewhodidthis/picknick",
+  "main": "./src/picknick.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\"",
+    "clean": "npm run clean:dist && npm run clean:logs",
+    "clean:dist": "rm -rf dist/",
+    "clean:logs": "rm -f *.log",
+    "lint": "npm run lint:js && npm run lint:css",
+    "lint:js": "(jshint src/js/*.js & jscs src/js/*.js --reporter=inlinesingle) 2>&1 | tee out.log",
+    "lint:css": "csslint src/css/*.css --format=compact --quiet 2>&1 | tee out.log",
+    "postlint": "find out.log -size 0 -print0 | xargs -0 rm",
+    "prebuild": "mkdir -p dist/",
+    "build": "browserify ./src/picknick.js -s picknick > ./dist/picknick.js",
+    "build:min": "browserify ./src/picknick.js -s picknick | uglifyjs -o ./dist/picknick.min.js",
+    "build:demo": "browserify ./example/js/*.js > ./example/js/index.bundle.js",
+    "watch": "npm run watch:demo",
+    "watch:demo": "nodemon -e js -w example/js/ -x 'npm run build:demo'"
+  },
+  "config": {
+    "port": "8080",
+    "jscsrc": ".jscsrc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thewhodidthis/picknick.git"
+  },
+  "bugs": {
+    "url": "https://github.com/thewhodidthis/picknick/issues"
+  },
+  "directories": {
+    "example": "example"
+  },
+  "keywords": [
+    "menu",
+    "tabs",
+    "slides",
+    "gallery"
+  ],
+  "engines": {
+    "node": ">=0.11.0",
+    "npm": ">=2.0.0"
+  },
+  "devDependencies": {
+    "browserify": "latest"
+  },
+  "license": "MIT"
+}
