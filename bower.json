@@ -1,6 +1,6 @@
 {
   "name": "picknick",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Helps select things",
   "main": [
     "dist/picknick.js"
