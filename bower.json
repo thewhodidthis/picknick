@@ -1,0 +1,34 @@
+{
+  "name": "picknick",
+  "version": "0.0.4",
+  "description": "Helps select things",
+  "main": [
+    "dist/picknick.js"
+  ],
+  "moduleType": [
+    "amd",
+    "node",
+    "globals"
+  ],
+  "ignore": [
+    ".*",
+    "package.json",
+    "node_modules",
+    "bower_components"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/thewhodidthis/picknick.git"
+  },
+  "keywords": [
+    "menu",
+    "tabs",
+    "slides",
+    "gallery"
+  ],
+  "authors": [
+    "sChzs BkgNns <sotirios.bakagiannis@gmail.com> (http://thewhodidthis.com/)"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/thewhodidthis/picknick/"
+}

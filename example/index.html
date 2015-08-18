@@ -1,0 +1,124 @@
+<!doctype html>
+<html class="nojs">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+    <title>Picknick demo</title>
+    <link rel="stylesheet" href="./css/index.css" />
+  </head>
+
+  <body>
+    <input id="checker" type="checkbox" class="checker"
+    /><label for="checker" class="opener toggle" onclick><span></span><span></span><span></span></label>
+
+    <ul class="menu">
+      <li id="menu-item-1"><a href="#tab-1">Menu Item I</a></li>
+      <li id="menu-item-2"><a href="#tab-2">Menu Item II</a></li>
+      <li id="menu-item-3"><a href="#tab-3">Menu Item III</a></li>
+      <li id="menu-item-4"><a href="#tab-4">Menu Item IV</a></li>
+    </ul>
+
+    <div class="tabs">
+      <div id="tab-1" class="tab">
+        <a name="tab-1"></a>
+
+        <div class="slides">
+          <div id="tab-1-slide-1" class="slide"><a href="#tab-1-slide-2"></a></div>
+          <div id="tab-1-slide-2" class="slide"><a href="#tab-1-slide-3"></a></div>
+          <div id="tab-1-slide-3" class="slide"><a href="#tab-1-slide-4"></a></div>
+          <div id="tab-1-slide-4" class="slide"><a href="#tab-1-slide-1"></a></div>
+
+          <ul class="arrows">
+            <li></li>
+            <li></li>
+          </ul>
+        </div>
+      </div>
+
+      <div id="tab-2" class="tab">
+        <a name="tab-2"></a>
+        <div class="slides">
+          <div id="tab-2-slide-1" class="slide"><a href="#tab-2-slide-2"></a></div>
+          <div id="tab-2-slide-2" class="slide"><a href="#tab-2-slide-3"></a></div>
+          <div id="tab-2-slide-3" class="slide"><a href="#tab-2-slide-4"></a></div>
+          <div id="tab-2-slide-4" class="slide"><a href="#tab-2-slide-1"></a></div>
+
+          <ul class="pager">
+            <li><a href="#tab-2-slide-1"></a></li>
+            <li><a href="#tab-2-slide-2"></a></li>
+            <li><a href="#tab-2-slide-3"></a></li>
+            <li><a href="#tab-2-slide-4"></a></li>
+          </ul>
+
+          <ul class="arrows">
+            <li><a href="#tab-2-slide-1"></a></li>
+            <li><a href="#tab-2-slide-4"></a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div id="tab-3" class="tab">
+        <a name="tab-3"></a>
+        <div class="slides">
+          <div id="tab-3-slide-1" class="slide"><a href="#tab-3-slide-2">
+            <figure><img src="http://i3.cdnds.net/12/33/618x500/rexfeatures_835067tx.jpg" /></figure>
+          </a></div>
+          <div id="tab-3-slide-2" class="slide"><a href="#tab-3-slide-3">
+            <figure><img src="http://urban-echo.co.uk/wp-content/uploads/2015/05/SNF1802TVJD3-532_1392972a.jpg" /></figure>
+          </a></div>
+          <div id="tab-3-slide-3" class="slide"><a href="#tab-3-slide-4">
+            <figure><img src="http://i4.cdnds.net/14/17/618x714/jason-donovan-curtains.jpg" /></figure>
+          </a></div>
+          <div id="tab-3-slide-4" class="slide"><a href="#tab-3-slide-1">
+            <figure><img src="http://resources3.news.com.au/images/2007/09/25/1111119/767663-jason-donovan.jpg" /></figure>
+          </a></div>
+
+          <ul class="pager">
+            <li><a href="#tab-3-slide-1"></a></li>
+            <li><a href="#tab-3-slide-2"></a></li>
+            <li><a href="#tab-3-slide-3"></a></li>
+            <li><a href="#tab-3-slide-4"></a></li>
+          </ul>
+
+          <ul class="arrows">
+            <li><a href="#tab-3-slide-1"></a></li>
+            <li><a href="#tab-3-slide-4"></a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div id="tab-4" class="tab">
+        <a name="tab-4"></a>
+        <div class="slides">
+          <div id="tab-4-slide-1" class="slide"><a href="#tab-4-slide-2">
+            <figure><img src="http://i3.cdnds.net/12/33/618x500/rexfeatures_835067tx.jpg" /></figure>
+          </a></div>
+          <div id="tab-4-slide-2" class="slide"><a href="#tab-4-slide-3">
+            <figure><img src="http://urban-echo.co.uk/wp-content/uploads/2015/05/SNF1802TVJD3-532_1392972a.jpg" /></figure>
+          </a></div>
+          <div id="tab-4-slide-3" class="slide"><a href="#tab-4-slide-4">
+            <figure><img src="http://i4.cdnds.net/14/17/618x714/jason-donovan-curtains.jpg" /></figure>
+          </a></div>
+          <div id="tab-4-slide-4" class="slide"><a href="#tab-4-slide-1">
+            <figure><img src="http://resources3.news.com.au/images/2007/09/25/1111119/767663-jason-donovan.jpg" /></figure>
+          </a></div>
+
+          <ul class="pager">
+            <li><a href="#tab-4-slide-1"></a></li>
+            <li><a href="#tab-4-slide-2"></a></li>
+            <li><a href="#tab-4-slide-3"></a></li>
+            <li><a href="#tab-4-slide-4"></a></li>
+          </ul>
+
+          <ul class="arrows">
+            <li><a href="#tab-4-slide-1"></a></li>
+            <li><a href="#tab-4-slide-4"></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <noscript id="noscript">please enable javascript</noscript>
+    <script src="./js/index.bundle.js"></script>
+  </body>
+</html>
