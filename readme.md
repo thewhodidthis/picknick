@@ -9,7 +9,7 @@ bower install picknick
 ```
 
 ### Usage
-See example for typical use cases.
+See example for typical use case.
 ```js
 var picknick = require('picknick');
 
