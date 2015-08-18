@@ -1,5 +1,5 @@
 # Picknick
-> Helps cycle through succesive calls up to a maximum and back again. Useful for building slideshows.
+> Run a callback each time the index inside of this thing gets updated. Useful for building slideshows.
 
 ### Setup
 ```
