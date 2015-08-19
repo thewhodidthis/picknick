@@ -50,5 +50,5 @@
     "nodemon": "latest",
     "uglify-js": "latest"
   },
-  "license": "MIT"
+  "license": "Unlicense"
 }
