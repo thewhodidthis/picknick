@@ -1,6 +1,6 @@
 'use strict';
 
-var picknick = require('../../dist/picknick');
+var picknick = require('picknick');
 
 var supports = {
   queries: 'querySelector' in document,
@@ -24,7 +24,7 @@ var setupGallery = function($host) {
 
       $children[idx].classList.add('active');
       console.log('---------------------------------');
-      console.log('current slide', idx, 'of', max);
+      console.log('current slide', idx + 1, 'of', max);
     }
   });
 
