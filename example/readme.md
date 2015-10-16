@@ -4,4 +4,5 @@
 ### Setup
 ```sh
 npm install
+npm build
 ```
