@@ -1,5 +1,3 @@
-module.exports = Picknick;
-
 function Picknick(options) {
   'use strict';
 
@@ -9,12 +7,11 @@ function Picknick(options) {
     callback: function() {}
   };
 
-  var settings = options || {};
+  var total = options.total || defaults.total;
 
-  // TODO allow passing of total and/or callback on init
-  var total = parseInt(settings.total) || defaults.total;
-  var current = parseInt(settings.offset) || defaults.offset;
-  var callback = (typeof settings.callback === 'function') ? settings.callback : defaults.callback;
+  // Limit offset between 0 and total - 1
+  var current = Math.max(Math.min(options.offset || defaults.offset, total - 1), 0);
+  var callback = options.callback || defaults.callback;
 
   var update = function _update(target) {
     if (total < 1 || target > total) {
@@ -27,7 +24,7 @@ function Picknick(options) {
   };
 
   var prev = function _prev() {
-    var target = (current === 0) ? total : current - 1;
+    var target = (current === 0) ? total - 1 : current - 1;
 
     update(target);
   };
@@ -61,3 +58,4 @@ function Picknick(options) {
   };
 }
 
+module.exports = Picknick;

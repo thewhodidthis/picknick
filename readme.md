@@ -2,7 +2,7 @@
 > Run a callback each time the index inside of this thing gets updated. Useful for building slideshows.
 
 ### Setup
-```
+```sh
 npm install picknick --save
 # or
 bower install picknick

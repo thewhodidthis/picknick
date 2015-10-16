@@ -1,0 +1,30 @@
+{
+  "name": "picknick-demo",
+  "version": "0.0.1",
+  "description": "Examples on using picknick",
+  "author": "sChzs BkgNns <sotirios.bakagiannis@gmail.com> (http://thewhodidthis.com/)",
+  "homepage": "https://github.com/thewhodidthis/picknick/example",
+  "main": "js/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\"",
+    "watch": "watchify js/index.js -o js/index.bundle.js",
+    "build": "browserify js/index.js > js/index.bundle.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thewhodidthis/picknick.git"
+  },
+  "engines": {
+    "node": ">=0.11.0",
+    "npm": ">=2.0.0"
+  },
+  "dependencies": {
+    "picknick": "latest"
+  },
+  "devDependencies": {
+    "watchify": "latest",
+    "browserify": "latest"
+  },
+  "license": "Unlicense"
+}
+
