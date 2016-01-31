@@ -1,6 +1,6 @@
 'use strict';
 
-var picknick = require('picknick');
+var picknick = picknick;
 
 var supports = {
   queries: 'querySelector' in document,

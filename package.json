@@ -2,21 +2,24 @@
   "name": "picknick",
   "version": "0.0.8",
   "description": "Helps select things",
-  "author": "sChzs BkgNns <sotirios.bakagiannis@gmail.com> (http://thewhodidthis.com/)",
   "homepage": "https://github.com/thewhodidthis/picknick",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\"",
-    "clean": "npm run clean:dist && npm run clean:logs",
-    "clean:dist": "rm -rf dist/",
-    "clean:logs": "rm -f *.log",
+    "clear": "npm run clear:dist && npm run clear:logs",
+    "clear:dist": "rm -rf dist/",
+    "clear:logs": "rm -f *.log",
     "lint": "(jshint index.js & jscs index.js --reporter=inlinesingle) 2>&1 | tee out.log",
     "postlint": "find out.log -size 0 -print0 | xargs -0 rm",
+
     "start": "npm run build && npm run build:min",
+    "serve": "",
+    "watch": "",
+    "example": "ln -s ~/Desktop/picknick/dist/picknick.js ~/Desktop/picknick/example",
     "prebuild": "mkdir -p dist/",
     "build": "browserify index.js -s picknick > ./dist/picknick.js",
-    "build:min": "browserify index.js -s picknick | uglifyjs -o ./dist/picknick.min.js",
-    "preversion": "npm run clean:logs"
+    "build:min": "browserify index.js -s picknick | uglifyjs -o dist/picknick.min.js",
+    "preversion": "npm run clear:logs"
   },
   "config": {
     "jscsrc": ".jscsrc"
@@ -47,5 +50,6 @@
     "uglify-js": "latest",
     "browserify": "latest"
   },
+  "author": "sChzs BkgNns <sotirios.bakagiannis@gmail.com> (https://thewhodidthis.com/)",
   "license": "Unlicense"
 }
