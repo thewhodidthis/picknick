@@ -1,4 +1,4 @@
-# Picknick
+## Picknick
 > Run a callback each time the index inside of this thing gets updated. Useful for building slideshows.
 
 ### Setup

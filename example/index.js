@@ -1,20 +1,13 @@
 'use strict';
 
-var picknick = picknick;
-
-var supports = {
-  queries: 'querySelector' in document,
-  listeners: 'addEventListener' in window
-};
-
 var $galleries = document.querySelectorAll('.slides');
 
-var setupGallery = function($host) {
+var setupGallery = function _setupGallery($host) {
   var $children = $host.querySelectorAll('.slide');
-  var max = $children.length;
+  var total = $children.length;
 
   var chooser = picknick({
-    total: max,
+    total: total,
     callback: function _onAfterUpdate(idx) {
       var $active = $host.querySelectorAll('.active')[0];
 
@@ -24,7 +17,7 @@ var setupGallery = function($host) {
 
       $children[idx].classList.add('active');
       console.log('---------------------------------');
-      console.log('current slide', idx + 1, 'of', max);
+      console.log('current slide', idx + 1, 'of', total);
     }
   });
 
@@ -35,7 +28,7 @@ var setupGallery = function($host) {
 
     chooser.next();
   });
-}
+};
 
 for (var i = 0, total = $galleries.length; i < total; i += 1) {
   setupGallery($galleries[i]);
