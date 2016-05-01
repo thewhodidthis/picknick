@@ -2,14 +2,12 @@
 function Picknick(options) {
   'use strict';
 
-  var options = options || Picknick.options;
-
   var total = options.total || 0;
   var offset = options.offset || 0;
+  var callback = options.callback || function() {};
 
   // Limit offset between 0 and total - 1
   var current = Math.max(Math.min(offset, total - 1), 0);
-  var callback = options.callback;
 
   var update = function _update(target) {
     if (total < 1 || target > total) {
@@ -55,12 +53,6 @@ function Picknick(options) {
     getTotal: getTotal,
   };
 }
-
-Picknick.options = {
-  total: 0,
-  offset: 0,
-  callback: function() {}
-};
 
 module.exports = Picknick;
 
