@@ -1,9 +1,6 @@
 .DS_Store
 
-bower_components/
-node_modules/
-
 *.log
 *.txt
 
-*bundle*
+node_modules/

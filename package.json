@@ -33,6 +33,7 @@
     "start": "npm run watch",
     "serve": "php -S localhost:8000",
     "watch": "watchify index.js -s picknick -o ./dist/picknick.js",
+    "example": "npm run build && npm run build:demo",
     "prebuild": "mkdir -p dist/",
     "build": "browserify index.js -s picknick -o ./dist/picknick.js",
     "build:min": "browserify index.js -s picknick | uglifyjs -o ./dist/picknick.min.js",
