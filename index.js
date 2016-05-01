@@ -1,9 +1,10 @@
-function Picknick(options) {
+function Picknick(options, callback) {
   'use strict';
 
-  var total = options.total || 0;
+  var total = options.total || parseInt(options) || 0;
   var offset = options.offset || 0;
-  var callback = options.callback || function() {};
+
+  var callback = callback || function() {};
 
   // Limit offset between 0 and total - 1
   var current = Math.max(Math.min(offset, total - 1), 0);
