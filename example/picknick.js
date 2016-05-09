@@ -1,1 +1,1 @@
-/Users/thewhodidthis/Desktop/picknick/dist/picknick.js
+/dist/picknick.js
