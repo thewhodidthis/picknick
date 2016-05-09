@@ -32,13 +32,13 @@
     "postlint": "find lint-js.log -size 0 -print0 | xargs -0 rm",
     "start": "npm run watch",
     "serve": "php -S localhost:8000",
-    "watch": "watchify index.js -s picknick -o ./dist/picknick.js",
-    "example": "npm run build && npm run build:demo",
+    "watch": "nodemon -e js -w index.js -x 'npm run build'",
+    "example": "npm run build",
     "prebuild": "mkdir -p dist/",
     "build": "browserify index.js -s picknick -o ./dist/picknick.js",
-    "build:min": "browserify index.js -s picknick | uglifyjs -o ./dist/picknick.min.js",
-    "build:demo": "ln -siv \"/dist/picknick.js\" example",
-    "postbuild": "npm run build:min",
+    "build:min": "browserify index.js -s picknick | uglifyjs -mc -o ./dist/picknick.min.js",
+    "build:demo": "cp dist/picknick.min.js example/picknick.js",
+    "postbuild": "npm run build:min && npm run build:demo",
     "preversion": "npm run clear:logs"
   },
   "engines": {
