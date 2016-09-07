@@ -1,29 +1,27 @@
 ## Picknick
-> Run a callback each time the index inside of this thing gets updated. Useful for building slideshows.
+> Run a callback each time the index inside of this thing gets updated, useful for slideshows, pagers etc.
 
 ### Setup
 ```sh
 npm install picknick --save
-# or
-bower install picknick
 ```
 
 ### Usage
-See example for typical use case.
 ```js
 var picknick = require('picknick');
 
-// And/or
-var pager = picknick({
+var pager = new Picknick({
 	total: 12,
-	offset: 2,
-	callback: function(idx) {
+	start: 2,
+	onUpdate: function(idx) {
 		console.log('current idx', idx);
 	}
 });
 
+var seed = Math.floor(Math.random() * pager.total);
+
 // Set current index
-pager.update(target);
+pager.pick(seed);
 
 // Cycle through -1
 pager.prev();
@@ -31,9 +29,17 @@ pager.prev();
 // Cycle through +1
 pager.next();
 
-// Limit up
-pager.setTotal(max);
-
-// Check current total
-pager.getTotal();
+// Check current index
+console.log(pager.index === seed);
 ```
+
+### Example
+```sh
+# Symlink freshly built standalone module into example folder
+# Start a php server on port 8000
+npm run example
+
+# Open using default browser
+open http://localhost:8000
+```
+
