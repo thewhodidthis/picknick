@@ -2,16 +2,15 @@ html {
   overflow: scroll;
 }
 
+html,
+body {
+  height: 100%;
+}
+
 body,
 p,
 figure {
   margin: 0;
-}
-
-img {
-  width: auto;
-  display: none;
-  max-height: 100%;
 }
 
 a {
@@ -21,8 +20,9 @@ a {
   position: relative;
 }
 
-a.active,
-a.active img {
+img {
+  width: auto;
+  height: 100%;
   display: block;
 }
 
@@ -31,7 +31,7 @@ figure {
   width: 100%;
   height: 360px;
   margin-top: -180px;
-  position: absolute;
+  position: relative;
 }
 
 figcaption {
@@ -50,6 +50,7 @@ figcaption p {
 .is-iframe figure {
   top: 0;
   margin: 0;
+  height: 100%;
 }
 
 .is-iframe figcaption {
@@ -57,7 +58,12 @@ figcaption p {
 }
 
 .is-iframe img {
-  width: 100%;
-  max-width: 100%;
-  max-height: none;
+  height: auto;
+  min-width: 100%;
+  min-height: 100%;
 }
+
+.is-active {
+  display: block;
+}
+

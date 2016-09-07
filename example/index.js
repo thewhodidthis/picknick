@@ -3,20 +3,18 @@
 var html = document.documentElement;
 var anchors = document.getElementsByTagName('a');
 
-var chooser = new Picknick(anchors.length, function _onAfterUpdate(idx) {
-  var current = document.querySelectorAll('.active')[0];
-
-  if (current) {
-    current.classList.remove('active');
+var chooser = new Picknick(anchors.length, function _onAfterUpdate(index) {
+  for (var i = 0, total = anchors.length; i < total; i += 1) {
+    anchors[i].removeAttribute('class');
   }
 
-  anchors[idx].classList.add('active');
+  anchors[index].className = 'is-active';
 });
 
 html.className = 'html';
 
 if (window !== window.top) {
-  html.classList.add('is-iframe');
+  html.className = html.className + ' is-iframe';
 }
 
 document.addEventListener('click', function(e) {
@@ -28,6 +26,9 @@ document.addEventListener('click', function(e) {
 
 document.addEventListener('keydown', function(e) {
   switch (e.keyCode) {
+    case 32:
+      chooser.next();
+      break;
     case 37:
       chooser.prev();
       break;
