@@ -1,37 +1,38 @@
 'use strict';
 
-var picknick = window.picknick;
-var $galleries = document.querySelectorAll('.slides');
+var html = document.documentElement;
+var anchors = document.getElementsByTagName('a');
 
-var setupGallery = function _setupGallery($host) {
-  var $children = $host.querySelectorAll('.slide');
-  var total = $children.length;
+var chooser = new Picknick(anchors.length, function _onAfterUpdate(idx) {
+  var current = document.querySelectorAll('.active')[0];
 
-  var chooser = picknick({
-    total: total
-  }, function _onAfterUpdate(idx) {
-    var $active = $host.querySelectorAll('.active')[0];
+  if (current) {
+    current.classList.remove('active');
+  }
 
-    if ($active) {
-      $active.classList.remove('active');
-    }
+  anchors[idx].classList.add('active');
+});
 
-    $children[idx].classList.add('active');
-    console.log('---------------------------------');
-    console.log('current slide', idx + 1, 'of', total);
-  });
+html.className = 'html';
 
-  // IE9>
-  $host.addEventListener('click', function(e) {
-    e.preventDefault();
-    e.stopPropagation();
-
-    chooser.next();
-  });
-};
-
-for (var i = 0, total = $galleries.length; i < total; i += 1) {
-  setupGallery($galleries[i]);
+if (window !== window.top) {
+  html.classList.add('is-iframe');
 }
 
-document.documentElement.classList.remove('nojs');
+document.addEventListener('click', function(e) {
+  e.preventDefault();
+  e.stopPropagation();
+
+  chooser.next();
+}, false);
+
+document.addEventListener('keydown', function(e) {
+  switch (e.keyCode) {
+    case 37:
+      chooser.prev();
+      break;
+    case 39:
+      chooser.next();
+      break;
+  }
+}, false);
