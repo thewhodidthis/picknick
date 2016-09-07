@@ -3,16 +3,16 @@
   "version": "1.0.0",
   "description": "Helps select things",
   "keywords": [
+    "gallery",
     "menu",
-    "tabs",
     "slides",
-    "gallery"
+    "tabs"
   ],
   "main": "index.js",
   "homepage": "https://github.com/thewhodidthis/picknick#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/thewhodidthis/picknick.git"
+    "url": "git+https://github.com/thewhodidthis/picknick.git"
   },
   "bugs": {
     "url": "https://github.com/thewhodidthis/picknick/issues"
@@ -46,6 +46,7 @@
     "node": ">=4.2.4",
     "npm": ">=3.5.3"
   },
+  "dependencies": {},
   "devDependencies": {
     "jscs": "latest",
     "jshint": "latest",
