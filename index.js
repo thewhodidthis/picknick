@@ -1,57 +1,36 @@
+'use strict';
+
 function Picknick(options, callback) {
-  'use strict';
+  this.start = options.start || 0;
+  this.total = options.total || parseInt(options, 10) || 0;
+  this._nick = options.onUpdate || callback;
 
-  var total = options.total || parseInt(options) || 0;
-  var offset = options.offset || 0;
-
-  var callback = callback || function() {};
-
-  // Limit offset between 0 and total - 1
-  var current = Math.max(Math.min(offset, total - 1), 0);
-
-  var update = function _update(target) {
-    if (total < 1 || target > total) {
-      return;
-    }
-
-    current = target;
-
-    callback(target);
-  };
-
-  var prev = function _prev() {
-    var target = (current === 0) ? total - 1 : current - 1;
-
-    update(target);
-  };
-
-  var next = function _next() {
-    var target = (current === total - 1) ? 0 : current + 1;
-
-    update(target);
-  };
-
-  var setTotal = function _setTotal(target) {
-    if (!target) {
-      return;
-    }
-
-    total = target;
-  };
-
-  var getTotal = function _getTotal() {
-    return total;
-  };
-
-  update(current);
-
-  return {
-    prev: prev,
-    next: next,
-    update: update,
-    setTotal: setTotal,
-    getTotal: getTotal,
-  };
+  this.index = this.start;
+  this.pick();
 }
+
+Picknick.prototype = {
+  constructor: Picknick,
+
+  pick: function tick(target) {
+    if (target >= 0 && target < this.total) {
+      this.index = target;
+    }
+
+    return this._nick(this.index);
+  },
+
+  prev: function prev() {
+    var target = (this.index === 0) ? this.total - 1 : this.index - 1;
+
+    this.pick(target);
+  },
+
+  next: function next() {
+    var target = (this.index === this.total - 1) ? 0 : this.index + 1;
+
+    this.pick(target);
+  }
+};
 
 module.exports = Picknick;
