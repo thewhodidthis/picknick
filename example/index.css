@@ -4,15 +4,18 @@ html {
 
 body,
 p,
+ul,
 figure {
   margin: 0;
 }
 
+noscript {
+  margin: 6px;
+  font: italic 12px/28px arial, sans-serif;
+}
+
 a {
-  height: 100%;
-  display: none;
   outline: none;
-  position: relative;
 }
 
 figure {
@@ -21,6 +24,49 @@ figure {
   height: 360px;
   margin-top: -180px;
   position: absolute;
+  text-align: center;
+}
+
+figure ul,
+figure li,
+figure li img {
+  height: 100%;
+}
+
+figure li,
+figure li img {
+  display: inline-block;
+}
+
+figure ul {
+  padding: 0;
+  font-size: 0;
+  line-height: 0;
+  display: block;
+  list-style: none;
+  white-space: nowrap;
+  counter-reset: slide;
+}
+
+figure li {
+  counter-increment: slide;
+}
+
+figure li a {
+  color: #000;
+  height: 360px;
+  display: none;
+  position: relative;
+}
+
+figure li a::before {
+  top: 0;
+  right: 0;
+  position: absolute;
+  padding: 10px 11px 0 0;
+  color: rgba(255, 255, 255, 0.4);
+  font: bold 15px/1 arial, sans-serif;
+  content: counter(slide, decimal-leading-zero);
 }
 
 figcaption {
@@ -34,8 +80,11 @@ figcaption p {
 
 img {
   width: auto;
-  height: 100%;
-  display: block;
+  height: 360px;
+}
+
+.no-js ul {
+  opacity: 0.666;
 }
 
 .is-iframe {
@@ -45,6 +94,13 @@ img {
 .is-iframe figure {
   top: 0;
   margin: 0;
+  text-align: left;
+}
+
+.is-iframe figure ul,
+.is-iframe figure li,
+.is-iframe figure li img {
+  height: auto;
 }
 
 .is-iframe figcaption {
