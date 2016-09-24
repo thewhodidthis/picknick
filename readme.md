@@ -3,7 +3,7 @@
 
 ### Setup
 ```sh
-npm install picknick --save
+npm install picknick
 ```
 
 ### Usage
