@@ -1,3 +1,5 @@
+'use strict';
+
 function Picknick(options, callback) {
   this.start = options.start || 0;
   this.total = options.total || parseInt(options, 10) || 0;
@@ -19,17 +21,17 @@ Picknick.prototype = {
   },
 
   prev: function prev() {
-    const target = (this.index === 0) ? this.total - 1 : this.index - 1;
+    var target = this.index === 0 ? this.total - 1 : this.index - 1;
 
     this.pick(target);
   },
 
   next: function next() {
-    const target = (this.index === this.total - 1) ? 0 : this.index + 1;
+    var target = this.index === this.total - 1 ? 0 : this.index + 1;
 
     this.pick(target);
   }
 };
 
-export default Picknick;
-
+module.exports = Picknick;
+//# sourceMappingURL=picknick.mjs.map

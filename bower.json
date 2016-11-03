@@ -1,0 +1,25 @@
+{
+  "name": "picknick",
+  "description": "Helps select things",
+  "main": [
+    "dist/picknick.js"
+  ],
+  "moduleType": "globals",
+  "license": "Unlicense",
+  "ignore": [
+    ".*",
+    "readme*",
+    "LICENSE",
+    "package.json",
+    "example"
+  ],
+  "keywords": [
+    "gallery",
+    "menu",
+    "slides",
+    "tabs"
+  ],
+  "authors": [
+    "sChzs BkgNns <sotirios.bakagiannis@gmail.com> (https://www.thewhodidthis.com)"
+  ]
+}

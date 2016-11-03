@@ -1,1 +1,1 @@
-/Users/thewhodidthis/Desktop/picknick/dist/picknick.js
+/Users/thewhodidthis/Desktop/picknick/dist/picknick.min.js
