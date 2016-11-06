@@ -8,9 +8,8 @@
     "slides",
     "tabs"
   ],
+  "jsnext:main": "index.js",
   "main": "dist/picknick.mjs",
-  "browser": "dist/picknick.js",
-  "jsnext:main": "dist/picknick.es",
   "homepage": "https://github.com/thewhodidthis/picknick#readme",
   "repository": {
     "type": "git",
