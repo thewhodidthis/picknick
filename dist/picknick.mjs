@@ -34,4 +34,3 @@ Picknick.prototype = {
 };
 
 module.exports = Picknick;
-//# sourceMappingURL=picknick.mjs.map
