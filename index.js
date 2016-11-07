@@ -1,4 +1,8 @@
 function Picknick(options, callback) {
+  if (this instanceof Picknick === false) {
+    return new Picknick(options, callback);
+  }
+
   this.start = options.start || 0;
   this.total = options.total || parseInt(options, 10) || 0;
   this.nick = options.onUpdate || callback;
