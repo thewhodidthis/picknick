@@ -1,7 +1,7 @@
 import babel from 'rollup-plugin-babel';
 
 export default {
-  entry: 'index.js',
+  entry: 'index.es',
   plugins: [
     babel(),
   ],
@@ -15,7 +15,7 @@ export default {
     },
     {
       format: 'cjs',
-      dest: 'dist/picknick.mjs'
+      dest: 'index.js'
     }
   ]
 };
