@@ -1,5 +1,3 @@
-'use strict';
-
 function Picknick(options, callback) {
   if (this instanceof Picknick === false) {
     return new Picknick(options, callback);
@@ -25,16 +23,17 @@ Picknick.prototype = {
   },
 
   prev: function prev() {
-    var target = this.index === 0 ? this.total - 1 : this.index - 1;
+    const target = (this.index === 0) ? this.total - 1 : this.index - 1;
 
     this.pick(target);
   },
 
   next: function next() {
-    var target = this.index === this.total - 1 ? 0 : this.index + 1;
+    const target = (this.index === this.total - 1) ? 0 : this.index + 1;
 
     this.pick(target);
   }
 };
 
-module.exports = Picknick;
+export default Picknick;
+
