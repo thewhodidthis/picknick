@@ -22,7 +22,6 @@
     "example": "example"
   },
   "config": {
-    "jscsrc": ".jscsrc",
     "remote": "thewhodidthis@umfufu:www/example/picknick/"
   },
   "scripts": {
@@ -30,7 +29,7 @@
     "clear": "npm run clear:dist && npm run clear:logs",
     "clear:dist": "rm -rf dist/",
     "clear:logs": "rm -f *.log",
-    "lint": "eslint index.es",
+    "lint": "eslint index.es; exit 0",
     "start": "npm run watch",
     "watch": "rollup -c -w",
     "preexample": "npm run build",
