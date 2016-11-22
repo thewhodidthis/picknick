@@ -23,13 +23,11 @@ Picknick.prototype = {
 
     return this.nick(this.index);
   },
-
   prev: function prev() {
     var target = this.index === 0 ? this.total - 1 : this.index - 1;
 
     this.pick(target);
   },
-
   next: function next() {
     var target = this.index === this.total - 1 ? 0 : this.index + 1;
 
