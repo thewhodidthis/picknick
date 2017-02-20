@@ -22,10 +22,10 @@
     "example": "example"
   },
   "config": {
-    "remote": "thewhodidthis@umfufu:www/example/picknick/"
+    "remote": "thewhodidthis@zazie:www/example/picknick/"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node test",
     "clear": "npm run clear:dist && npm run clear:logs",
     "clear:dist": "rm -rf dist/",
     "clear:logs": "rm -f *.log",
@@ -57,6 +57,7 @@
     "rollup": "latest",
     "rollup-plugin-babel": "latest",
     "rollup-watch": "latest",
+    "tape": "latest",
     "uglify-js": "latest"
   },
   "author": "sChzs BkgNns <sotirios.bakagiannis@gmail.com> (https://www.thewhodidthis.com)",
