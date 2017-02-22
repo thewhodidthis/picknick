@@ -1,38 +1,38 @@
 'use strict';
 
-function Picknick(options, callback) {
-  if (this instanceof Picknick === false) {
-    return new Picknick(options, callback);
-  }
-
-  this.start = options.start || 0;
-  this.total = options.total || parseInt(options, 10) || 0;
-  this.nick = options.onUpdate || callback;
-
-  this.index = this.start;
-  this.pick();
-}
-
-Picknick.prototype = {
-  constructor: Picknick,
-
-  pick: function pick(target) {
-    if (target >= 0 && target < this.total) {
-      this.index = target;
-    }
-
-    return this.nick(this.index);
-  },
-  prev: function prev() {
-    var target = this.index === 0 ? this.total - 1 : this.index - 1;
-
-    this.pick(target);
-  },
-  next: function next() {
-    var target = this.index === this.total - 1 ? 0 : this.index + 1;
-
-    this.pick(target);
-  }
+var inc = function inc(idx, max) {
+  return idx === max - 1 ? 0 : idx + 1;
+};
+var dec = function dec(idx, max) {
+  return idx === 0 ? max - 1 : idx - 1;
 };
 
-module.exports = Picknick;
+var createPager = function createPager() {
+  var opts = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : { total: 0, index: 0 };
+  var echo = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : function () {};
+  return {
+    total: Object.hasOwnProperty.call(opts, 'total') ? opts.total : opts,
+    index: Object.hasOwnProperty.call(opts, 'index') ? opts.index : 0,
+
+    pick: function pick(n) {
+      if (n >= 0 && n < this.total) {
+        this.index = n;
+      }
+
+      return echo(this.index);
+    },
+    nick: function nick() {
+      return this.index;
+    },
+    prev: function prev() {
+      this.pick(dec(this.index, this.total));
+    },
+    next: function next() {
+      this.pick(inc(this.index, this.total));
+    }
+  };
+};
+
+var index = { createPager: createPager };
+
+module.exports = index;
