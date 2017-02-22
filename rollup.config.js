@@ -10,7 +10,7 @@ export default {
       format: 'iife',
       indent: true,
       sourceMap: true,
-      moduleName: 'Picknick',
+      moduleName: 'picknick',
       dest: 'dist/picknick.js'
     },
     {
