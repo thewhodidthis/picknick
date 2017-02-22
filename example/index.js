@@ -3,13 +3,15 @@
 var html = document.documentElement;
 var anchors = document.getElementsByTagName('a');
 
-var chooser = new Picknick(anchors.length, function _onAfterUpdate(index) {
+var select = function (n) {
   for (var i = 0, total = anchors.length; i < total; i += 1) {
-    anchors[i].removeAttribute('class');
+    anchors[i].classList.remove('is-active');
   }
 
-  anchors[index].className = 'is-active';
-});
+  anchors[n].classList.add('is-active');
+};
+
+var slider = picknick.createPager(anchors.length, select);
 
 html.className = 'html';
 
@@ -21,19 +23,20 @@ document.addEventListener('click', function(e) {
   e.preventDefault();
   e.stopPropagation();
 
-  chooser.next();
-}, false);
+  slider.next();
+});
 
 document.addEventListener('keydown', function(e) {
   switch (e.keyCode) {
     case 32:
-      chooser.next();
+      slider.next();
       break;
     case 37:
-      chooser.prev();
+      slider.prev();
       break;
     case 39:
-      chooser.next();
+      slider.next();
       break;
+    default:
   }
-}, false);
+});
