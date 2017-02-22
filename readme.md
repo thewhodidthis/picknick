@@ -1,5 +1,5 @@
 ## Picknick
-> Run a callback each time the index inside of this thing gets updated, useful for slideshows, pagers etc.
+> Useful for rotating slideshows, mixin friendly pager 
 
 ### Setup
 ```sh
@@ -8,29 +8,20 @@ npm install picknick
 
 ### Usage
 ```js
-var picknick = require('picknick');
+const pager = require('picknick').createPager;
 
-var pager = new Picknick({
+// The following are equivalent
+const myPager = pager({
 	total: 12,
-	start: 2,
-	onUpdate: function(idx) {
-		console.log('current idx', idx);
-	}
-});
+}, console.log);
 
-var seed = Math.floor(Math.random() * pager.total);
+const pager12 = pager(12, console.log);
 
-// Set current index
-pager.pick(seed);
+// Decrement
+myPager.prev();
 
-// Cycle through -1
-pager.prev();
-
-// Cycle through +1
-pager.next();
-
-// Check current index
-console.log(pager.index === seed);
+// Increment
+myPager.next();
 ```
 
 ### Example
