@@ -1,39 +1,30 @@
-function Picknick(options, callback) {
-  if (this instanceof Picknick === false) {
-    return new Picknick(options, callback);
-  }
+const inc = (idx, max) => (idx === max - 1 ? 0 : idx + 1);
+const dec = (idx, max) => (idx === 0 ? max - 1 : idx - 1);
 
-  this.start = options.start || 0;
-  this.total = options.total || parseInt(options, 10) || 0;
-  this.nick = options.onUpdate || callback;
+const createPager = (opts = { total: 0, index: 0 }, echo = () => {}) => ({
+  total: Object.hasOwnProperty.call(opts, 'total') ? opts.total : opts,
+  index: Object.hasOwnProperty.call(opts, 'index') ? opts.index : 0,
 
-  this.index = this.start;
-  this.pick();
-}
-
-Picknick.prototype = {
-  constructor: Picknick,
-
-  pick(target) {
-    if (target >= 0 && target < this.total) {
-      this.index = target;
+  pick(n) {
+    if (n >= 0 && n < this.total) {
+      this.index = n;
     }
 
-    return this.nick(this.index);
+    return echo(this.index);
+  },
+
+  nick() {
+    return this.index;
   },
 
   prev() {
-    const target = (this.index === 0) ? this.total - 1 : this.index - 1;
-
-    this.pick(target);
+    this.pick(dec(this.index, this.total));
   },
 
   next() {
-    const target = (this.index === this.total - 1) ? 0 : this.index + 1;
+    this.pick(inc(this.index, this.total));
+  },
+});
 
-    this.pick(target);
-  }
-};
-
-export default Picknick;
+export default { createPager };
 
