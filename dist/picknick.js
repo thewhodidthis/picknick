@@ -1,18 +1,20 @@
 var picknick = (function () {
   'use strict';
 
+  var isNum = function isNum(n) {
+    return !isNaN(parseFloat(n)) && isFinite(n);
+  };
   var createPager = function createPager() {
     for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    // Not filtering to avoid polyfill
-    var max = typeof args[0] === 'number' ? args[0] : 0;
-    var idx = typeof args[1] === 'number' ? args[1] : 0;
+    var max = isNum(args[0]) ? args[0] : 0;
+    var idx = isNum(args[1]) ? args[1] : 0;
 
     var echo = typeof args[args.length - 1] === 'function' ? args.pop() : function () {};
     var tick = function tick(n) {
-      if (n >= 0 && n < max) {
+      if (isNum(n) && n >= 0 && n < max) {
         idx = n;
       }
 
@@ -31,7 +33,7 @@ var picknick = (function () {
         return tick(idx === max - 1 ? 0 : idx + 1);
       },
       total: function total(n) {
-        if (n) {
+        if (isNum(n)) {
           max = n;
         }
 
