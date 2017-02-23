@@ -2,23 +2,30 @@
 
 const test = require('tape');
 const pager = require('../').createPager;
-const garbage = [undefined, ' ', '', '\n', NaN, {}, [], Date()];
 
-test('will default silently when fed garbage', (t) => {
-  garbage.forEach((v) => {
-    const counter = pager(v);
+test('will cycle through', (t) => {
+  const counter = pager(23, 17);
 
-    t.equal(counter.pick(v), 0, 'cannot mess with index');
-    t.equal(counter.total(v), 0, 'cannot mess with total');
+  t.plan(2);
 
-    t.doesNotThrow(counter.nick, 'can read index');
-    t.doesNotThrow(counter.prev, 'can call decrement');
-    t.doesNotThrow(counter.next, 'can call increment');
-    t.doesNotThrow(counter.pick, 'can try setting index');
-    t.doesNotThrow(counter.total, 'can try setting total');
-  });
+  counter.prev();
+  t.equal(counter.nick(), 16, 'prev is a match');
 
-  t.end();
+  counter.next();
+  counter.next();
+  t.equal(counter.nick(), 18, 'next is a match');
+});
+
+test('will pause if index or total misconfigured', (t) => {
+  const counter = pager(-1, -2);
+
+  t.plan(2);
+
+  counter.prev();
+  t.equal(counter.nick(), -2, 'prev has no effect');
+
+  counter.next();
+  t.equal(counter.nick(), -2, 'next has no effect');
 });
 
 test('will protect data', (t) => {
@@ -34,28 +41,20 @@ test('will protect data', (t) => {
   t.end();
 });
 
-test('will pause if index or total misconfigured', (t) => {
-  const counter = pager(-1, -2);
+test('will default silently when fed garbage', (t) => {
+  const garbage = [undefined, ' ', '', '\n', NaN, {}, [], Date()];
 
-  t.plan(2);
+  garbage.forEach((v) => {
+    const counter = pager(v);
+    const methods = Object.keys(counter)
+      .filter(key => typeof counter[key] === 'function')
+      .map(key => counter[key])
+      .forEach(val => t.doesNotThrow(val));
 
-  counter.prev();
-  t.equal(counter.nick(), -2, 'prev has no effect');
+    t.equal(counter.pick(v), 0, 'cannot mess with index');
+    t.equal(counter.total(v), 0, 'cannot mess with total');
+  });
 
-  counter.next();
-  t.equal(counter.nick(), -2, 'next has no effect');
-});
-
-test('will cycle through', (t) => {
-  const counter = pager(23, 17);
-
-  t.plan(2);
-
-  counter.prev();
-  t.equal(counter.nick(), 16, 'prev is a match');
-
-  counter.next();
-  counter.next();
-  t.equal(counter.nick(), 18, 'next is a match');
+  t.end();
 });
 
