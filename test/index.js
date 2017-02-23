@@ -2,125 +2,60 @@
 
 const test = require('tape');
 const pager = require('../').createPager;
+const garbage = [undefined, ' ', '', '\n', NaN, {}, [], Date()];
 
-test('will accept bare total', (t) => {
-  const counter = pager(2);
+test('will default silently when fed garbage', (t) => {
+  garbage.forEach((v) => {
+    const counter = pager(v);
 
-  t.equal(counter.total, 2, 'total is a match');
-  t.end();
-});
+    t.equal(counter.pick(v), 0, 'cannot mess with index');
+    t.equal(counter.total(v), 0, 'cannot mess with total');
 
-test('will respect defaults', function(t) {
-  const counter = pager();
-
-  try {
-    counter.pick();
-  } catch (e) {
-    t.fail(e);
-  }
-
-  t.equal(counter.index, 0, 'index is a match');
-  t.equal(counter.total, 0, 'total is a match');
-  t.end();
-});
-
-test('will respect settings', (t) => {
-  const myFactory = pager(23);
-  const counter = Object.assign(myFactory, {
-    total: 5,
-    index: 2,
-  });
-
-  t.plan(2);
-  t.equal(counter.total, 5, 'total is a match');
-  t.equal(counter.index, 2, 'index is a match');
-});
-
-test('will throw if options are null', (t) => {
-  try {
-    pager(null);
-  } catch (e) {
-    t.pass(e);
-  };
-
-  t.end();
-});
-
-test('callback affects method calls', (t) => {
-  const counter = pager({
-    total: 5,
-    index: 2,
-  }, null);
-
-  try {
-    counter.pick() && counter.prev() && counter.next();
-  } catch (e) {
-    t.pass(e);
-  }
-
-  t.equal(counter.total, 5, 'total is a match');
-  t.equal(counter.index, 2, 'index is a match');
-  t.end();
-});
-
-test('settings do not affect method calls', (t) => {
-  const garbage = [undefined, NaN, {}, [], () => {}, Symbol, Date()];
-  const counters = garbage.map((val) => pager(val));
-
-  counters.forEach((counter, i) => {
-    try {
-      counter.pick() && counter.prev() && counter.next();
-    } catch (e) {
-      t.fail(e);
-    }
+    t.doesNotThrow(counter.nick, 'can read index');
+    t.doesNotThrow(counter.prev, 'can call decrement');
+    t.doesNotThrow(counter.next, 'can call increment');
+    t.doesNotThrow(counter.pick, 'can try setting index');
+    t.doesNotThrow(counter.total, 'can try setting total');
   });
 
   t.end();
 });
 
-test('settings will pause index', (t) => {
-  const garbage = [undefined, NaN, {}, [], () => {}, Symbol, Date()];
-  const counter = pager({});
+test('will protect data', (t) => {
+  const counter1 = pager(2, 1);
+  const counter2 = pager(3, 2);
 
-  t.plan(2);
+  counter1.prev();
+  counter2.prev();
 
-  counter.prev();
-  t.equal(counter.index, 0, 'prev has no effect');
+  t.equal(counter1.nick(), 0, 'index is a match');
+  t.equal(counter2.nick(), 1, 'index is a match');
 
-  counter.next();
-  t.equal(counter.index, 0, 'next has no effect');
+  t.end();
 });
 
-test('will pause if index greater than total', (t) => {
-  const counter = pager({
-    total: 2,
-    index: 3,
-  });
+test('will pause if index or total misconfigured', (t) => {
+  const counter = pager(-1, -2);
 
   t.plan(2);
 
   counter.prev();
-  counter.prev();
-  t.equal(counter.index, 3, 'prev has no effect');
+  t.equal(counter.nick(), -2, 'prev has no effect');
 
   counter.next();
-  counter.next();
-  counter.next();
-  t.equal(counter.index, 3, 'next has no effect');
+  t.equal(counter.nick(), -2, 'next has no effect');
 });
 
 test('will cycle through', (t) => {
-  const counter = pager({
-    total: 5,
-    index: 2,
-  });
+  const counter = pager(23, 17);
 
   t.plan(2);
 
   counter.prev();
-  t.equal(counter.index, 1, 'prev is a match');
+  t.equal(counter.nick(), 16, 'prev is a match');
 
   counter.next();
-  t.equal(counter.index, 2, 'next is a match');
+  counter.next();
+  t.equal(counter.nick(), 18, 'next is a match');
 });
 
