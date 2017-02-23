@@ -9,18 +9,12 @@ npm install picknick
 ### Usage
 ```js
 const pager = require('picknick').createPager;
+const myPager = pager(12, 0, console.log);
 
-// The following are equivalent
-const myPager = pager({
-	total: 12,
-}, console.log);
-
-const pager12 = pager(12, console.log);
-
-// Decrement
+// Decrement, prints 0
 myPager.prev();
 
-// Increment
+// Increment, prints 1
 myPager.next();
 ```
 
