@@ -3,7 +3,7 @@ const createPager = (...args) => {
   let max = isNum(args[0]) ? args[0] : 0;
   let idx = isNum(args[1]) ? args[1] : 0;
 
-  const echo = (typeof args[args.length - 1] === 'function') ? args.pop() : () => {};
+  const echo = (typeof args[args.length - 1] === 'function') ? args.pop() : (n) => n;
   const tick = (n) => {
     if (isNum(n) && n >= 0 && n < max) {
       idx = n;
