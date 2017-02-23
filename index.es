@@ -1,30 +1,31 @@
-const inc = (idx, max) => (idx === max - 1 ? 0 : idx + 1);
-const dec = (idx, max) => (idx === 0 ? max - 1 : idx - 1);
+const createPager = (...args) => {
+  // Not using args filter or find to prevent babel form intervening
+  let max = (typeof args[0] === 'number') ? args[0] : 0;
+  let idx = (typeof args[1] === 'number') ? args[1] : 0;
 
-const createPager = (opts = { total: 0, index: 0 }, echo = () => {}) => ({
-  total: Object.hasOwnProperty.call(opts, 'total') ? opts.total : opts,
-  index: Object.hasOwnProperty.call(opts, 'index') ? opts.index : 0,
-
-  pick(n) {
-    if (n >= 0 && n < this.total) {
-      this.index = n;
+  const echo = (typeof args[args.length - 1] === 'function') ? args.pop() : () => {};
+  const tick = (n) => {
+    if (n >= 0 && n < max) {
+      idx = n;
     }
 
-    return echo(this.index);
-  },
+    return echo(idx);
+  };
 
-  nick() {
-    return this.index;
-  },
+  return {
+    pick: tick,
+    nick: () => idx,
+    prev: () => tick(idx === 0 ? max - 1 : idx - 1),
+    next: () => tick(idx === max - 1 ? 0 : idx + 1),
+    total(n) {
+      if (n) {
+        max = n;
+      }
 
-  prev() {
-    this.pick(dec(this.index, this.total));
-  },
-
-  next() {
-    this.pick(inc(this.index, this.total));
-  },
-});
+      return max;
+    },
+  };
+};
 
 export default { createPager };
 

@@ -1,34 +1,40 @@
 'use strict';
 
-var inc = function inc(idx, max) {
-  return idx === max - 1 ? 0 : idx + 1;
-};
-var dec = function dec(idx, max) {
-  return idx === 0 ? max - 1 : idx - 1;
-};
-
 var createPager = function createPager() {
-  var opts = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : { total: 0, index: 0 };
-  var echo = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : function () {};
+  for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+    args[_key] = arguments[_key];
+  }
+
+  // Not filtering to avoid polyfill
+  var max = typeof args[0] === 'number' ? args[0] : 0;
+  var idx = typeof args[1] === 'number' ? args[1] : 0;
+
+  var echo = typeof args[args.length - 1] === 'function' ? args.pop() : function () {};
+  var tick = function tick(n) {
+    if (n >= 0 && n < max) {
+      idx = n;
+    }
+
+    return echo(idx);
+  };
+
   return {
-    total: Object.hasOwnProperty.call(opts, 'total') ? opts.total : opts,
-    index: Object.hasOwnProperty.call(opts, 'index') ? opts.index : 0,
-
-    pick: function pick(n) {
-      if (n >= 0 && n < this.total) {
-        this.index = n;
-      }
-
-      return echo(this.index);
-    },
+    pick: tick,
     nick: function nick() {
-      return this.index;
+      return idx;
     },
     prev: function prev() {
-      this.pick(dec(this.index, this.total));
+      return tick(idx === 0 ? max - 1 : idx - 1);
     },
     next: function next() {
-      this.pick(inc(this.index, this.total));
+      return tick(idx === max - 1 ? 0 : idx + 1);
+    },
+    total: function total(n) {
+      if (n) {
+        max = n;
+      }
+
+      return max;
     }
   };
 };
