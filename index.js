@@ -1,22 +1,24 @@
 'use strict';
 
-var isNum = function isNum(n) {
-  return !isNaN(parseFloat(n)) && isFinite(n);
+var isAllowed = function isAllowed(str) {
+  return (/^\+?\d+$/.test(str)
+  );
 };
+
 var createPager = function createPager() {
   for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
     args[_key] = arguments[_key];
   }
 
-  var max = isNum(args[0]) ? args[0] : 0;
-  var idx = isNum(args[1]) ? args[1] : 0;
+  var max = isAllowed(args[0]) ? args[0] : 0;
+  var idx = isAllowed(args[1]) ? args[1] : 0;
 
   var echo = typeof args[args.length - 1] === 'function' ? args.pop() : function (n) {
     return n;
   };
   var tick = function tick(n) {
-    if (isNum(n) && n >= 0 && n < max) {
-      idx = n;
+    if (isAllowed(n) && n < max) {
+      idx = parseInt(n, 10);
     }
 
     return echo(idx);
@@ -34,8 +36,8 @@ var createPager = function createPager() {
       return tick(idx === max - 1 ? 0 : idx + 1);
     },
     total: function total(n) {
-      if (isNum(n)) {
-        max = n;
+      if (isAllowed(n) && n > idx) {
+        max = parseInt(n, 10);
       }
 
       return max;
