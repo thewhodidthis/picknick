@@ -1,5 +1,5 @@
 ## Picknick
-> Useful for rotating slideshows, mixin friendly pager 
+> Mixin friendly pager useful for setting up rotating slideshows
 
 ### Setup
 ```sh
