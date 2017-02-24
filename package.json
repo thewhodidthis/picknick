@@ -8,7 +8,7 @@
     "slides",
     "tabs"
   ],
-  "jsnext:main": "index.es",
+  "module": "index.es",
   "main": "index.js",
   "homepage": "https://github.com/thewhodidthis/picknick#readme",
   "repository": {
