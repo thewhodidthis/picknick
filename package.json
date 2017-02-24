@@ -25,6 +25,7 @@
     "remote": "thewhodidthis@zazie:www/example/picknick/"
   },
   "scripts": {
+    "pretest": "rollup -c",
     "test": "node test",
     "clear": "npm run clear:dist && npm run clear:logs",
     "clear:dist": "rm -rf dist/",
