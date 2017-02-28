@@ -11,8 +11,8 @@ var isAllowed = function isAllowed(str) {
   );
 };
 
+// Pager factory
 /**
- * @alias module:picknick.createPager
  * @param {Number} cutoff - Counts up to
  * @param {Number} offset - Starts counting from
  * @param {Function} callback - Fired as a consequence of picking out the index
@@ -20,7 +20,6 @@ var isAllowed = function isAllowed(str) {
  * @example
  * picknick.createPager(2, 3, console.log);
  */
-// Pager factory
 var createPager = function createPager() {
   for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
     args[_key] = arguments[_key];
