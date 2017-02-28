@@ -8,8 +8,8 @@
     "slides",
     "tabs"
   ],
-  "module": "index.es",
   "main": "index.js",
+  "module": "index.es",
   "homepage": "https://github.com/thewhodidthis/picknick#readme",
   "repository": {
     "type": "git",
@@ -27,7 +27,7 @@
   "scripts": {
     "pretest": "rollup -c",
     "test": "node test",
-    "clear": "npm run clear:dist && npm run clear:logs && npm run clear:logs",
+    "clear": "npm run clear:dist && npm run clear:docs && npm run clear:logs",
     "clear:dist": "rm -rf dist/",
     "clear:docs": "rm -rf docs/",
     "clear:logs": "rm -f *.log",
@@ -55,10 +55,10 @@
   "devDependencies": {
     "babel-eslint": "latest",
     "babel-preset-es2015": "latest",
+    "docco": "latest",
     "eslint": "latest",
     "eslint-plugin-import": "latest",
     "eslint-config-airbnb-base": "latest",
-    "docco": "latest",
     "rollup": "latest",
     "rollup-plugin-babel": "latest",
     "rollup-watch": "latest",
