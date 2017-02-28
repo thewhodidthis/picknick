@@ -6,8 +6,8 @@
 // Helps filter out negative, infinite and non numeric values
 const isAllowed = str => /^\+?\d+$/.test(str);
 
+// Pager factory
 /**
- * @alias module:picknick.createPager
  * @param {Number} cutoff - Counts up to
  * @param {Number} offset - Starts counting from
  * @param {Function} callback - Fired as a consequence of picking out the index
@@ -15,7 +15,6 @@ const isAllowed = str => /^\+?\d+$/.test(str);
  * @example
  * picknick.createPager(2, 3, console.log);
  */
-// Pager factory
 const createPager = (...args) => {
   // Cutoff
   let max = isAllowed(args[0]) ? args[0] : 0;
