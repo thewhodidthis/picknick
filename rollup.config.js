@@ -3,7 +3,9 @@ import babel from 'rollup-plugin-babel';
 export default {
   entry: 'index.es',
   plugins: [
-    babel(),
+    babel({
+      exclude: "node_modules/**"
+    }),
   ],
   targets: [
     {
