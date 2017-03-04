@@ -1,3 +1,4 @@
+// # Picknick
 /**
  * Helps setup pagers
  * @module picknick
@@ -6,7 +7,7 @@
 // Helps filter out negative, infinite and non numeric values
 const isAllowed = str => /^\+?\d+$/.test(str);
 
-// Pager factory
+// __Pager factory__
 /**
  * @param {Number} cutoff - Counts up to
  * @param {Number} offset - Starts counting from
@@ -16,11 +17,8 @@ const isAllowed = str => /^\+?\d+$/.test(str);
  * picknick.createPager(2, 3, console.log);
  */
 const createPager = (...args) => {
-  // Cutoff
-  let max = isAllowed(args[0]) ? args[0] : 0;
-
-  // Offset
-  let idx = isAllowed(args[1]) ? args[1] : 0;
+  // Cutoff, offset
+  let [max = 0, idx = 0] = args.filter(isAllowed);
 
   // Assume last argument is the callback
   const echo = (typeof args[args.length - 1] === 'function') ? args.pop() : n => n;
@@ -50,14 +48,13 @@ const createPager = (...args) => {
     // Decrement current index by one
     next: () => tick(idx === max - 1 ? 0 : idx + 1),
 
-    // Get or set the total
+    // Get/set total
     total(n) {
       // Check total is greater than current index
       if (isAllowed(n) && n > idx) {
         max = parseInt(n, 10);
       }
 
-      // Get total
       return max;
     },
   };
