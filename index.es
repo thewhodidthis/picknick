@@ -1,21 +1,10 @@
 // # Picknick
-/**
- * Helps setup pagers
- * @module picknick
- */
+// Helps setup pagers
 
 // Helps filter out negative, infinite and non numeric values
 const isAllowed = str => /^\+?\d+$/.test(str);
 
 // __Pager factory__
-/**
- * @param {Number} cutoff - Counts up to
- * @param {Number} offset - Starts counting from
- * @param {Function} callback - Fired as a consequence of picking out the index
- * @returns {Object}
- * @example
- * picknick.createPager(2, 3, console.log);
- */
 const createPager = (cutoff, offset, callback) => {
   // Reset cutoff, offset if non numeric
   let max = isAllowed(cutoff) ? cutoff : 0;
