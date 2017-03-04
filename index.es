@@ -16,16 +16,17 @@ const isAllowed = str => /^\+?\d+$/.test(str);
  * @example
  * picknick.createPager(2, 3, console.log);
  */
-const createPager = (...args) => {
-  // Cutoff, offset
-  let [max = 0, idx = 0] = args.filter(isAllowed);
+const createPager = (cutoff, offset, callback) => {
+  // Reset cutoff, offset if non numeric
+  let max = isAllowed(cutoff) ? cutoff : 0;
+  let idx = isAllowed(offset) ? offset : 0;
 
-  // Assume last argument is the callback
-  const echo = (typeof args[args.length - 1] === 'function') ? args.pop() : n => n;
+  // Look for callback within args
+  const echo = [cutoff, offset, callback].filter(val => typeof val === 'function')[0] || (n => n);
 
   // Set the index
   const tick = (n) => {
-    // Check supplied index does not exceed cuttoff
+    // Check supplied index remains below cutoff
     if (isAllowed(n) && n < max) {
       idx = parseInt(n, 10);
     }
