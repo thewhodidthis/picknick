@@ -1,49 +1,8 @@
 var picknick = (function () {
   'use strict';
 
-  var slicedToArray = function () {
-    function sliceIterator(arr, i) {
-      var _arr = [];
-      var _n = true;
-      var _d = false;
-      var _e = undefined;
-
-      try {
-        for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
-          _arr.push(_s.value);
-
-          if (i && _arr.length === i) break;
-        }
-      } catch (err) {
-        _d = true;
-        _e = err;
-      } finally {
-        try {
-          if (!_n && _i["return"]) _i["return"]();
-        } finally {
-          if (_d) throw _e;
-        }
-      }
-
-      return _arr;
-    }
-
-    return function (arr, i) {
-      if (Array.isArray(arr)) {
-        return arr;
-      } else if (Symbol.iterator in Object(arr)) {
-        return sliceIterator(arr, i);
-      } else {
-        throw new TypeError("Invalid attempt to destructure non-iterable instance");
-      }
-    };
-  }();
-
   // # Picknick
-  /**
-   * Helps setup pagers
-   * @module picknick
-   */
+  // Helps setup pagers
 
   // Helps filter out negative, infinite and non numeric values
   var isAllowed = function isAllowed(str) {
@@ -52,37 +11,21 @@ var picknick = (function () {
   };
 
   // __Pager factory__
-  /**
-   * @param {Number} cutoff - Counts up to
-   * @param {Number} offset - Starts counting from
-   * @param {Function} callback - Fired as a consequence of picking out the index
-   * @returns {Object}
-   * @example
-   * picknick.createPager(2, 3, console.log);
-   */
-  var createPager = function createPager() {
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
+  var createPager = function createPager(cutoff, offset, callback) {
+    // Reset cutoff, offset if non numeric
+    var max = isAllowed(cutoff) ? cutoff : 0;
+    var idx = isAllowed(offset) ? offset : 0;
 
-    // Cutoff, offset
-    var _args$filter = args.filter(isAllowed),
-        _args$filter2 = slicedToArray(_args$filter, 2),
-        _args$filter2$ = _args$filter2[0],
-        max = _args$filter2$ === undefined ? 0 : _args$filter2$,
-        _args$filter2$2 = _args$filter2[1],
-        idx = _args$filter2$2 === undefined ? 0 : _args$filter2$2;
-
-    // Assume last argument is the callback
-
-
-    var echo = typeof args[args.length - 1] === 'function' ? args.pop() : function (n) {
+    // Look for callback within args
+    var echo = [cutoff, offset, callback].filter(function (val) {
+      return typeof val === 'function';
+    })[0] || function (n) {
       return n;
     };
 
     // Set the index
     var tick = function tick(n) {
-      // Check supplied index does not exceed cuttoff
+      // Check supplied index remains below cutoff
       if (isAllowed(n) && n < max) {
         idx = parseInt(n, 10);
       }
