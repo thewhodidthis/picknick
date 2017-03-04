@@ -26,14 +26,10 @@
               <a class="pilcrow" href="#section-1">&#182;</a>
             </div>
             <h1 id="picknick">Picknick</h1>
+<p>Helps setup pagers</p>
 
           </div>
 
-          
-          <div class="content"><div class='highlight'><pre><span class="hljs-comment">/**
- * Helps setup pagers
- * @module picknick
- */</span></pre></div></div>
           
         </li>
         
@@ -65,15 +61,7 @@
           </div>
 
           
-          <div class="content"><div class='highlight'><pre><span class="hljs-comment">/**
- * @param {Number} cutoff - Counts up to
- * @param {Number} offset - Starts counting from
- * @param {Function} callback - Fired as a consequence of picking out the index
- * @returns {Object}
- * @example
- * picknick.createPager(2, 3, console.log);
- */</span>
-<span class="hljs-keyword">const</span> createPager = <span class="hljs-function">(<span class="hljs-params">...args</span>) =&gt;</span> {</pre></div></div>
+          <div class="content"><div class='highlight'><pre><span class="hljs-keyword">const</span> createPager = <span class="hljs-function">(<span class="hljs-params">cutoff, offset, callback</span>) =&gt;</span> {</pre></div></div>
           
         </li>
         
@@ -84,12 +72,13 @@
             <div class="pilwrap">
               <a class="pilcrow" href="#section-4">&#182;</a>
             </div>
-            <p>Cutoff, offset</p>
+            <p>Reset cutoff, offset if non numeric</p>
 
           </div>
 
           
-          <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">let</span> [max = <span class="hljs-number">0</span>, idx = <span class="hljs-number">0</span>] = args.filter(isAllowed);</pre></div></div>
+          <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">let</span> max = isAllowed(cutoff) ? cutoff : <span class="hljs-number">0</span>;
+  <span class="hljs-keyword">let</span> idx = isAllowed(offset) ? offset : <span class="hljs-number">0</span>;</pre></div></div>
           
         </li>
         
@@ -100,12 +89,12 @@
             <div class="pilwrap">
               <a class="pilcrow" href="#section-5">&#182;</a>
             </div>
-            <p>Assume last argument is the callback</p>
+            <p>Look for callback within args</p>
 
           </div>
 
           
-          <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">const</span> echo = (<span class="hljs-keyword">typeof</span> args[args.length - <span class="hljs-number">1</span>] === <span class="hljs-string">'function'</span>) ? args.pop() : <span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> n;</pre></div></div>
+          <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">const</span> echo = [cutoff, offset, callback].filter(<span class="hljs-function"><span class="hljs-params">val</span> =&gt;</span> <span class="hljs-keyword">typeof</span> val === <span class="hljs-string">'function'</span>)[<span class="hljs-number">0</span>] || (<span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> n);</pre></div></div>
           
         </li>
         
@@ -132,7 +121,7 @@
             <div class="pilwrap">
               <a class="pilcrow" href="#section-7">&#182;</a>
             </div>
-            <p>Check supplied index does not exceed cuttoff</p>
+            <p>Check supplied index remains below cutoff</p>
 
           </div>
 
