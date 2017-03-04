@@ -39,9 +39,7 @@ test('will cycle through', (t) => {
 
 test('will respond but default when thrown trash at', (t) => {
   const counter = pager(null);
-  const results = trash.reduce((acc, val) => {
-    return acc + counter.total(val) + counter.pick(val);
-  }, 0);
+  const results = trash.reduce((acc, val) => acc + counter.total(val) + counter.pick(val), 0);
 
   t.equal(results, 0);
   t.end();
