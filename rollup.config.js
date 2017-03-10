@@ -4,7 +4,7 @@ export default {
   entry: 'index.es',
   plugins: [
     babel({
-      exclude: "node_modules/**"
+      exclude: 'node_modules/**'
     }),
   ],
   targets: [
