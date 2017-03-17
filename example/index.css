@@ -1,3 +1,8 @@
+noscript {
+  margin: 6px;
+  font: italic 12px/28px arial, sans-serif;
+}
+
 html {
   overflow: scroll;
 }
@@ -7,11 +12,6 @@ p,
 ul,
 figure {
   margin: 0;
-}
-
-noscript {
-  margin: 6px;
-  font: italic 12px/28px arial, sans-serif;
 }
 
 a {
@@ -27,18 +27,27 @@ figure {
   text-align: center;
 }
 
-figure ul,
-figure li,
-figure li img {
+figcaption {
+  font-size: 90%;
+  margin: 0.5rem 0;
+}
+
+figcaption p {
+  padding-left: 0.5rem;
+}
+
+ul,
+li,
+img {
   height: 100%;
 }
 
-figure li,
-figure li img {
+li,
+img {
   display: inline-block;
 }
 
-figure ul {
+ul {
   padding: 0;
   font-size: 0;
   line-height: 0;
@@ -48,18 +57,18 @@ figure ul {
   counter-reset: slide;
 }
 
-figure li {
+li {
   counter-increment: slide;
 }
 
-figure li a {
+li a {
   color: #000;
   height: 360px;
   display: none;
   position: relative;
 }
 
-figure li a::before {
+li a::before {
   top: 0;
   right: 0;
   position: absolute;
@@ -67,15 +76,6 @@ figure li a::before {
   color: rgba(255, 255, 255, 0.4);
   font: bold 15px/1 arial, sans-serif;
   content: counter(slide, decimal-leading-zero);
-}
-
-figcaption {
-  font-size: 90%;
-  margin-top: 0.5rem;
-}
-
-figcaption p {
-  padding-left: 0.5rem;
 }
 
 img {
