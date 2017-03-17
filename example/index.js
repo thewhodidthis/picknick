@@ -13,8 +13,6 @@ var select = function (n) {
 
 var slider = picknick.createPager(anchors.length, select);
 
-html.className = 'html';
-
 if (window !== window.top) {
   html.className = html.className + ' is-iframe';
 }
