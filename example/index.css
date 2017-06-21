@@ -1,8 +1,3 @@
-noscript {
-  margin: 6px;
-  font: italic 12px/28px arial, sans-serif;
-}
-
 html {
   overflow: scroll;
 }
@@ -81,6 +76,11 @@ li a::before {
 img {
   width: auto;
   height: 360px;
+}
+
+noscript {
+  margin: 6px;
+  font: italic 12px/28px arial, sans-serif;
 }
 
 .is-active {
