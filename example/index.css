@@ -83,8 +83,8 @@ img {
   height: 360px;
 }
 
-.no-js ul {
-  opacity: 0.666;
+.is-active {
+  display: block;
 }
 
 .is-iframe {
@@ -110,9 +110,5 @@ img {
 .is-iframe img {
   width: 100%;
   max-width: 100%;
-}
-
-.is-active {
-  display: block;
 }
 
