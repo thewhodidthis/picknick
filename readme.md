@@ -8,14 +8,14 @@ npm install picknick
 
 ### Usage
 ```js
-const pager = require('picknick').createPager;
-const myPager = pager(12, 0, console.log);
+const picknick = require('picknick');
+const pager = picknick(12, 0, console.log);
 
 // Decrement, prints 0
-myPager.prev();
+pager.prev();
 
 // Increment, prints 1
-myPager.next();
+pager.next();
 ```
 
 ### Example
