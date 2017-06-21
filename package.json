@@ -26,14 +26,13 @@
   },
   "scripts": {
     "test": "node test",
-    "lint": "eslint index.es test/*.js",
-    "docs": "docco -l ivory -e .js index.es",
+    "lint": "eslint . example --ext .es test/*.js",
+    "docs": "docco  -e .js -l ivory index.es",
     "start": "rollup -c && uglifyjs dist/picknick.js -cmo dist/picknick.min.js",
-    "preexample": "npm start",
-    "example": "npm run example:link && npm run example:serve",
-    "example:link": "ln -siv \"$(pwd)/dist/picknick.min.js\" example/picknick.js",
+    "example": "npm run example:build && npm run example:serve",
+    "example:build": "rollup -c -i example/index.es -f iife -o example/index.js",
     "example:serve": "php -S localhost:8000 -t example/",
-    "example:push": "rsync -avruzLPC --exclude=.DS_Store ./example/ $npm_package_config_remote"
+    "example:press": "rsync -avruzLPC --delete --exclude=.DS_Store ./example/ $npm_package_config_remote"
   },
   "engines": {
     "node": ">=4.2.4",
@@ -43,7 +42,7 @@
   "devDependencies": {
     "babel-eslint": "latest",
     "babel-plugin-external-helpers": "latest",
-    "babel-preset-es2015": "latest",
+    "babel-preset-latest": "latest",
     "docco": "github:67656e65726963/docco",
     "eslint": "^3.19.0",
     "eslint-config-airbnb-base": "latest",
