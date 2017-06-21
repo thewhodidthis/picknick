@@ -1,30 +1,27 @@
-'use strict';
+const anchors = document.getElementsByTagName('a');
 
-var html = document.documentElement;
-var anchors = document.getElementsByTagName('a');
-
-var select = function (n) {
-  for (var i = 0, total = anchors.length; i < total; i += 1) {
+const select = (n) => {
+  for (let i = 0, total = anchors.length; i < total; i += 1) {
     anchors[i].classList.remove('is-active');
   }
 
   anchors[n].classList.add('is-active');
 };
 
-var slider = picknick.createPager(anchors.length, select);
+const slider = Picknick(anchors.length, select);
 
 if (window !== window.top) {
-  html.className = html.className + ' is-iframe';
+  document.documentElement.classList.add('is-iframe');
 }
 
-document.addEventListener('click', function(e) {
+document.addEventListener('click', (e) => {
   e.preventDefault();
   e.stopPropagation();
 
   slider.next();
 });
 
-document.addEventListener('keydown', function(e) {
+document.addEventListener('keydown', (e) => {
   switch (e.keyCode) {
     case 32:
       slider.next();
@@ -36,5 +33,7 @@ document.addEventListener('keydown', function(e) {
       slider.next();
       break;
     default:
+      break;
   }
 });
+
