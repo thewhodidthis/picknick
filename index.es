@@ -50,5 +50,5 @@ const createPager = (cutoff, offset, callback) => {
   };
 };
 
-export default { createPager };
+export default createPager;
 

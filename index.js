@@ -65,6 +65,4 @@ var createPager = function createPager(cutoff, offset, callback) {
   };
 };
 
-var index = { createPager: createPager };
-
-module.exports = index;
+module.exports = createPager;
