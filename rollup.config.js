@@ -10,9 +10,7 @@ export default {
   targets: [
     {
       format: 'iife',
-      indent: true,
-      sourceMap: true,
-      moduleName: 'picknick',
+      moduleName: 'Picknick',
       dest: 'dist/picknick.js'
     },
     {
