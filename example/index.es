@@ -1,38 +1,35 @@
 import Picknick from '../index.es';
 
-const anchors = document.getElementsByTagName('a');
+const items = document.querySelectorAll('a');
+const itemsN = items.length;
 
 const select = (n) => {
-  for (let i = 0, total = anchors.length; i < total; i += 1) {
-    anchors[i].classList.remove('is-active');
+  for (let i = 0; i < itemsN; i += 1) {
+    items[i].classList.remove('is-active');
   }
 
-  anchors[n].classList.add('is-active');
+  items[n].classList.add('is-active');
 };
 
-const slider = Picknick(anchors.length, select);
-
-if (window !== window.top) {
-  document.documentElement.classList.add('is-iframe');
-}
+const gallery = Picknick(itemsN, select);
 
 document.addEventListener('click', (e) => {
   e.preventDefault();
   e.stopPropagation();
 
-  slider.next();
+  gallery.next();
 });
 
 document.addEventListener('keydown', (e) => {
   switch (e.keyCode) {
     case 32:
-      slider.next();
+      gallery.next();
       break;
     case 37:
-      slider.prev();
+      gallery.prev();
       break;
     case 39:
-      slider.next();
+      gallery.next();
       break;
     default:
       break;

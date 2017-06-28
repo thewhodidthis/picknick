@@ -66,39 +66,36 @@ var createPager$1 = function createPager(cutoff, offset, callback) {
   };
 };
 
-var anchors = document.getElementsByTagName('a');
+var items = document.querySelectorAll('a');
+var itemsN = items.length;
 
 var select = function select(n) {
-  for (var i = 0, total = anchors.length; i < total; i += 1) {
-    anchors[i].classList.remove('is-active');
+  for (var i = 0; i < itemsN; i += 1) {
+    items[i].classList.remove('is-active');
   }
 
-  anchors[n].classList.add('is-active');
+  items[n].classList.add('is-active');
 };
 
-var slider = createPager$1(anchors.length, select);
-
-if (window !== window.top) {
-  document.documentElement.classList.add('is-iframe');
-}
+var gallery = createPager$1(itemsN, select);
 
 document.addEventListener('click', function (e) {
   e.preventDefault();
   e.stopPropagation();
 
-  slider.next();
+  gallery.next();
 });
 
 document.addEventListener('keydown', function (e) {
   switch (e.keyCode) {
     case 32:
-      slider.next();
+      gallery.next();
       break;
     case 37:
-      slider.prev();
+      gallery.prev();
       break;
     case 39:
-      slider.next();
+      gallery.next();
       break;
     default:
       break;
