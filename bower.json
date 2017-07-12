@@ -1,15 +1,12 @@
 {
   "name": "picknick",
   "description": "Helps select things",
-  "main": [
-    "dist/picknick.js"
-  ],
-  "moduleType": "globals",
+  "main": "index.es",
+  "moduleType": "es6",
   "license": "Unlicense",
   "ignore": [
     ".*",
     "readme*",
-    "rollup*",
     "LICENSE",
     "package.json",
     "example"
