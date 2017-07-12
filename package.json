@@ -2,12 +2,6 @@
   "name": "picknick",
   "version": "4.0.1",
   "description": "Helps select things",
-  "keywords": [
-    "gallery",
-    "menu",
-    "slides",
-    "tabs"
-  ],
   "main": "index.js",
   "module": "index.es",
   "homepage": "https://github.com/thewhodidthis/picknick#readme",
@@ -18,21 +12,18 @@
   "bugs": {
     "url": "https://github.com/thewhodidthis/picknick/issues"
   },
-  "directories": {
-    "example": "example"
-  },
-  "config": {
-    "remote": "thewhodidthis@zazie:www/example/picknick/"
-  },
   "scripts": {
+    "pretest": "eslint test.js",
     "test": "node test",
-    "lint": "eslint . example --ext .es test/*.js",
-    "docs": "docco -e .js -l ivory index.es",
-    "start": "rollup -c && uglifyjs dist/picknick.js -cmo dist/picknick.min.js",
-    "example": "npm run example:build && npm run example:serve",
-    "example:build": "rollup -c -i example/index.es -f iife -o example/index.js",
-    "example:serve": "php -S localhost:8000 -t example/",
-    "example:press": "rsync -avruzLPC --delete --exclude=.DS_Store ./example/ $npm_package_config_remote"
+    "prestart": "eslint index.es",
+    "start": "rollup -f cjs index.es | buble > index.js",
+    "preexample": "eslint example/index.es",
+    "example": "cd example; rollup -f iife index.es | buble > index.js",
+    "postexample": "open example/index.html",
+    "postpublish": "rsync -avruzLPC --del --exclude=.* ./example/ thewhodidthis@zazie:www/example/picknick/"
+  },
+  "eslintConfig": {
+    "extends": "@thewhodidthis"
   },
   "engines": {
     "node": ">=4.2.4",
@@ -40,17 +31,11 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "babel-eslint": "latest",
-    "babel-plugin-external-helpers": "latest",
-    "babel-preset-latest": "latest",
-    "docco": "github:67656e65726963/docco",
-    "eslint": "^3.19.0",
-    "eslint-config-airbnb-base": "latest",
-    "eslint-plugin-import": "latest",
+    "@thewhodidthis/eslint-config": "latest",
+    "buble": "latest",
+    "eslint": "latest",
     "rollup": "latest",
-    "rollup-plugin-babel": "latest",
-    "tape": "latest",
-    "uglify-js": "latest"
+    "tape": "latest"
   },
   "author": "sChzs BkgNns <sotirios.bakagiannis@gmail.com> (https://www.thewhodidthis.com)",
   "license": "Unlicense"
