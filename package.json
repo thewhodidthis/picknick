@@ -20,7 +20,7 @@
     "preexample": "eslint example/index.es",
     "example": "cd example; rollup -f iife index.es | buble > index.js",
     "postexample": "open example/index.html",
-    "postpublish": "rsync -avruzLPC --del --exclude=.* ./example/ thewhodidthis@zazie:www/example/picknick/"
+    "postpublish": "rsync -avruzLPC --del --exclude=.* ./example/ \"$(cat config)\""
   },
   "eslintConfig": {
     "extends": "@thewhodidthis"
