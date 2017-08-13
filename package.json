@@ -19,8 +19,7 @@
     "start": "rollup -f cjs index.es | buble > index.js",
     "preexample": "eslint example/index.es",
     "example": "cd example; rollup -f iife index.es | buble > index.js",
-    "postexample": "open example/index.html",
-    "postpublish": "rsync -avruzLPC --del --exclude=.* ./example/ \"$(cat config)\""
+    "postexample": "open example/index.html"
   },
   "eslintConfig": {
     "extends": "@thewhodidthis"
