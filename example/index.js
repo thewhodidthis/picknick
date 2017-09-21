@@ -53,7 +53,7 @@ var createPager$1 = function (cutoff, offset, callback) {
   }
 };
 
-var items = document.querySelectorAll('a');
+var items = document.querySelectorAll('li a');
 var itemsN = items.length;
 
 var select = function (n) {

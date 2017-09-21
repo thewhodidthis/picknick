@@ -1,6 +1,6 @@
-import Picknick from '../index.es'
+import Picknick from '../index.mjs'
 
-const items = document.querySelectorAll('a')
+const items = document.querySelectorAll('li a')
 const itemsN = items.length
 
 const select = (n) => {

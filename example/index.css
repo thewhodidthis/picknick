@@ -1,9 +1,21 @@
+html {
+  font: 16px/1.25 arial, sans-serif;
+}
+
 body {
   box-sizing: border-box;
-  font: 16px/1.25 arial, sans-serif;
   margin: 0;
   overflow: hidden;
   padding: 0.5rem;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
 }
 
 small {
@@ -43,26 +55,17 @@ ul {
 li {
   counter-increment: slide;
   display: inline-block;
-}
-
-li,
-img {
   height: 100%;
 }
 
-img {
-  display: block;
-  width: auto;
-}
-
-a {
+li a {
   display: none;
   height: 100%;
   position: relative;
   width: 100%;
 }
 
-a::before {
+li a::before {
   color: rgba(255, 255, 255, 0.4);
   content: counter(slide, decimal-leading-zero);
   font: bold 15px/1 arial, sans-serif;
@@ -70,6 +73,12 @@ a::before {
   position: absolute;
   right: 0;
   top: 0;
+}
+
+img {
+  display: block;
+  height: 100%;
+  width: auto;
 }
 
 .is-active {
