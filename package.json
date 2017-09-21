@@ -3,7 +3,7 @@
   "version": "4.0.5",
   "description": "Helps select things",
   "main": "index.js",
-  "module": "index.es",
+  "module": "index.mjs",
   "homepage": "https://github.com/thewhodidthis/picknick#readme",
   "repository": {
     "type": "git",
@@ -15,8 +15,8 @@
   "scripts": {
     "pretest": "eslint test.js",
     "test": "node test",
-    "prestart": "eslint index.es",
-    "start": "rollup -f cjs index.es | buble > index.js",
+    "prestart": "eslint index.mjs",
+    "start": "rollup -f cjs index.mjs | buble > index.js",
     "preexample": "eslint example/index.es",
     "example": "cd example; rollup -f iife index.es | buble > index.js",
     "postexample": "open example/index.html"
