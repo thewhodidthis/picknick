@@ -1,6 +1,6 @@
 {
   "name": "picknick",
-  "version": "4.0.5",
+  "version": "4.0.6",
   "description": "Helps select things",
   "main": "index.js",
   "module": "index.mjs",
