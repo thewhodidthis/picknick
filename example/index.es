@@ -1,4 +1,4 @@
-import Picknick from '../index.mjs'
+import createPager from '../index.es'
 
 const items = document.querySelectorAll('li a')
 const itemsN = items.length
@@ -11,7 +11,7 @@ const select = (n) => {
   items[n].classList.add('is-active')
 }
 
-const gallery = Picknick(itemsN, select)
+const gallery = createPager(itemsN, select)
 
 document.addEventListener('click', (e) => {
   e.preventDefault()

@@ -8,7 +8,7 @@
 var isAllowed = function (str) { return /^\+?\d+$/.test(str); };
 
 // __Pager factory__
-var createPager$1 = function (cutoff, offset, callback) {
+var createPager = function (cutoff, offset, callback) {
   // Reset cutoff, offset if non numeric
   var max = isAllowed(cutoff) ? cutoff : 0;
   var idx = isAllowed(offset) ? offset : 0;
@@ -64,7 +64,7 @@ var select = function (n) {
   items[n].classList.add('is-active');
 };
 
-var gallery = createPager$1(itemsN, select);
+var gallery = createPager(itemsN, select);
 
 document.addEventListener('click', function (e) {
   e.preventDefault();
