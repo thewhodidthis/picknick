@@ -1,7 +1,7 @@
 {
   "name": "picknick",
   "description": "Helps select things",
-  "main": "index.mjs",
+  "main": "index.es",
   "moduleType": "es6",
   "license": "Unlicense",
   "ignore": [
