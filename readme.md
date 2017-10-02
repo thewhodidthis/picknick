@@ -3,17 +3,19 @@
 
 ### Setup
 ```sh
-npm install picknick
+# Fetch latest from github
+npm i thewhodidthis/picknick
 ```
 
 ### Usage
 ```js
-const createPager = require('picknick');
-const pager = createPager(12, 0, console.log);
+import createPager from picknick'
+
+const pager = createPager(12, 0, console.log)
 
 // Decrement, prints 0
-pager.prev();
+pager.prev()
 
 // Increment, prints 1
-pager.next();
+pager.next()
 ```
