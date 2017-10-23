@@ -64,25 +64,27 @@ var select = function (n) {
   items[n].classList.add('is-active');
 };
 
-var gallery = createPager(itemsN, select);
+var ref = createPager(itemsN, select);
+var prev = ref.prev;
+var next = ref.next;
 
 document.addEventListener('click', function (e) {
   e.preventDefault();
   e.stopPropagation();
 
-  gallery.next();
+  next();
 });
 
 document.addEventListener('keydown', function (e) {
   switch (e.keyCode) {
   case 32:
-    gallery.next();
+    next();
     break
   case 37:
-    gallery.prev();
+    prev();
     break
   case 39:
-    gallery.next();
+    next();
     break
   default:
     break

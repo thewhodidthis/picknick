@@ -11,25 +11,25 @@ const select = (n) => {
   items[n].classList.add('is-active')
 }
 
-const gallery = createPager(itemsN, select)
+const { prev, next } = createPager(itemsN, select)
 
 document.addEventListener('click', (e) => {
   e.preventDefault()
   e.stopPropagation()
 
-  gallery.next()
+  next()
 })
 
 document.addEventListener('keydown', (e) => {
   switch (e.keyCode) {
   case 32:
-    gallery.next()
+    next()
     break
   case 37:
-    gallery.prev()
+    prev()
     break
   case 39:
-    gallery.next()
+    next()
     break
   default:
     break
