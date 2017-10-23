@@ -4,19 +4,19 @@
 // Helps setup pagers
 
 // Helps filter out negative, infinite and non numeric values
-var isAllowed = function (str) { return /^\+?\d+$/.test(str); };
+const isAllowed = str => /^\+?\d+$/.test(str);
 
 // __Pager factory__
-var createPager = function (cutoff, offset, callback) {
+const createPager = (cutoff, offset, callback) => {
   // Reset cutoff, offset if non numeric
-  var max = isAllowed(cutoff) ? cutoff : 0;
-  var idx = isAllowed(offset) ? offset : 0;
+  let max = isAllowed(cutoff) ? cutoff : 0;
+  let idx = isAllowed(offset) ? offset : 0;
 
   // Look for callback within args
-  var echo = [cutoff, offset, callback].filter(function (val) { return typeof val === 'function'; })[0] || (function (n) { return n; });
+  const echo = [cutoff, offset, callback].filter(val => typeof val === 'function')[0] || (n => n);
 
   // Set the index
-  var tick = function (n) {
+  const tick = (n) => {
     // Check supplied index remains below cutoff
     if (isAllowed(n) && n < max) {
       idx = parseInt(n, 10);
@@ -32,16 +32,16 @@ var createPager = function (cutoff, offset, callback) {
     pick: tick,
 
     // Get current index
-    nick: function () { return idx; },
+    nick: () => idx,
 
     // Increment current index by one
-    prev: function () { return tick(idx === 0 ? max - 1 : idx - 1); },
+    prev: () => tick(idx === 0 ? max - 1 : idx - 1),
 
     // Decrement current index by one
-    next: function () { return tick(idx === max - 1 ? 0 : idx + 1); },
+    next: () => tick(idx === max - 1 ? 0 : idx + 1),
 
     // Get/set total
-    total: function total(n) {
+    total(n) {
       // Check total is greater than current index
       if (isAllowed(n) && n > idx) {
         max = parseInt(n, 10);
@@ -53,4 +53,3 @@ var createPager = function (cutoff, offset, callback) {
 };
 
 module.exports = createPager;
-
