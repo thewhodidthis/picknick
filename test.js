@@ -1,75 +1,58 @@
 'use strict'
 
-const test = require('tape')
+const { equal, notDeepEqual } = require('tapeless')
 const createPager = require('./')
 
 const trash = [undefined, null, Infinity, NaN, Object, Function, ' ', '\t\t', '\n\r', '-1', 1.1]
 
-test('will maintain own state', (t) => {
-  const pager1 = createPager(1)
-  const pager2 = createPager(1)
+const p1 = createPager(1)
+const p2 = createPager(1)
 
-  pager1.prev()
-  pager2.prev()
+p1.prev()
+p2.prev()
 
-  t.notDeepEqual(pager1, pager2)
-  t.equal(pager1.nick(), 0)
-  t.equal(pager2.nick(), 0)
+notDeepEqual(p1, p2, 'pagers are different', 'will maintain own state')
+equal(p1.nick(), 0)
+equal(p2.nick(), 0)
 
-  t.end()
-})
+const p3 = createPager(5)
 
-test('will cycle through', (t) => {
-  const pager = createPager(5)
+for (let i = 0, total = p3.total(); i < total; i += 1) {
+  p3.next()
+}
 
-  t.plan(2)
+equal(p3.nick(), 0, 'back to zero', 'will cycle through')
 
-  for (let i = 0, total = pager.total(); i < total; i += 1) {
-    pager.next()
-  }
+for (let i = 0, total = p3.total(); i < total; i += 1) {
+  p3.prev()
+}
 
-  t.equal(pager.nick(), 0)
+equal(p3.nick(), 0, 'back to zero')
 
-  for (let i = 0, total = pager.total(); i < total; i += 1) {
-    pager.prev()
-  }
+const p4 = createPager(null)
+const results = trash.reduce((acc, val) => acc + p4.total(val) + p4.pick(val), 0)
 
-  t.equal(pager.nick(), 0)
-})
+equal(results, 0, 'nothing', 'will respond but default when thrown trash at')
 
-test('will respond but default when thrown trash at', (t) => {
-  const pager = createPager(null)
-  const results = trash.reduce((acc, val) => acc + pager.total(val) + pager.pick(val), 0)
+const p5 = createPager(-1, -1)
 
-  t.equal(results, 0)
-  t.end()
-})
+equal(p5.total(-8e5), 0, 'total is a match', 'will only allow positive finite numbers')
+equal(p5.nick(), 0)
+equal(p5.pick(Infinity), 0)
 
-test('will only allow positive finite numbers', (t) => {
-  const pager = createPager(-1, -1)
+// Both total and index are zero
+let pager = createPager()
 
-  t.equal(pager.total(-8e5), 0)
-  t.equal(pager.nick(), 0)
-  t.equal(pager.pick(Infinity), 0)
-  t.end()
-})
+pager.next()
+pager.next()
 
-test('will pause if', (t) => {
-  // Both total and index are zero
-  let pager = createPager()
+equal(pager.nick(), 0, 'index and total are zero', 'will pause if')
 
-  pager.next()
-  pager.next()
+// Total less than index
+pager = createPager(0, 10)
 
-  t.equal(pager.nick(), 0, 'index and total are zero')
+pager.next()
+pager.next()
+pager.total(1)
 
-  // Total less than index
-  pager = createPager(0, 10)
-
-  pager.next()
-  pager.next()
-  pager.total(1)
-
-  t.equal(pager.nick() + pager.total(), 10, 'index greater than total')
-  t.end()
-})
+equal(pager.nick() + pager.total(), 10, 'index greater than total')
