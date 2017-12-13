@@ -18,8 +18,7 @@
     "prestart": "eslint index.es",
     "start": "rollup -f cjs index.es > index.js",
     "preexample": "eslint example/index.es",
-    "example": "cd example; rollup -f iife index.es | buble > index.js",
-    "postexample": "open example/index.html"
+    "example": "cd example; rollup -f iife index.es | buble > index.js"
   },
   "eslintConfig": {
     "extends": "@thewhodidthis"
