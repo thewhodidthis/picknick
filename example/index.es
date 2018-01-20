@@ -1,4 +1,4 @@
-import createPager from '../index.es'
+import createPager from '../index.mjs'
 
 const items = document.querySelectorAll('li a')
 const itemsN = items.length
