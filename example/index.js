@@ -1,95 +1,34 @@
-(function () {
-'use strict';
+import createPager from '../index.mjs'
 
-// # Picknick
-// Helps setup pagers
+const tabs = document.querySelectorAll('li a')
 
-// Helps filter out negative, infinite and non numeric values
-var isAllowed = function (str) { return /^\+?\d+$/.test(str); };
+const { prev, next } = createPager(tabs.length, (n) => {
+  tabs.forEach((tab) => {
+    tab.classList.remove('is-active')
+  })
 
-// __Pager factory__
-var createPager = function (cutoff, offset, callback) {
-  // Reset cutoff, offset if non numeric
-  var max = isAllowed(cutoff) ? cutoff : 0;
-  var idx = isAllowed(offset) ? offset : 0;
+  tabs[n].classList.add('is-active')
+})
 
-  // Look for callback within args
-  var echo = [cutoff, offset, callback].filter(function (val) { return typeof val === 'function'; })[0] || (function (n) { return n; });
+document.addEventListener('click', (e) => {
+  e.preventDefault()
+  e.stopPropagation()
 
-  // Set the index
-  var tick = function (n) {
-    // Check supplied index remains below cutoff
-    if (isAllowed(n) && n < max) {
-      idx = parseInt(n, 10);
-    }
+  next()
+})
 
-    // Call back with index
-    return echo(idx)
-  };
-
-  // The pager object
-  return {
-    // Alias tick
-    pick: tick,
-
-    // Get current index
-    nick: function () { return idx; },
-
-    // Increment current index by one
-    prev: function () { return tick(idx === 0 ? max - 1 : idx - 1); },
-
-    // Decrement current index by one
-    next: function () { return tick(idx === max - 1 ? 0 : idx + 1); },
-
-    // Get/set total
-    total: function total(n) {
-      // Check total is greater than current index
-      if (isAllowed(n) && n > idx) {
-        max = parseInt(n, 10);
-      }
-
-      return max
-    }
-  }
-};
-
-var items = document.querySelectorAll('li a');
-var itemsN = items.length;
-
-var select = function (n) {
-  for (var i = 0; i < itemsN; i += 1) {
-    items[i].classList.remove('is-active');
-  }
-
-  items[n].classList.add('is-active');
-};
-
-var ref = createPager(itemsN, select);
-var prev = ref.prev;
-var next = ref.next;
-
-document.addEventListener('click', function (e) {
-  e.preventDefault();
-  e.stopPropagation();
-
-  next();
-});
-
-document.addEventListener('keydown', function (e) {
+document.addEventListener('keydown', (e) => {
   switch (e.keyCode) {
   case 32:
-    next();
+    next()
     break
   case 37:
-    prev();
+    prev()
     break
   case 39:
-    next();
+    next()
     break
   default:
     break
   }
-});
-
-}());
-
+})
