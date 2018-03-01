@@ -14,29 +14,29 @@
   },
   "scripts": {
     "pretest": "eslint test.js",
-    "test": "node test.js",
+    "test": "node test",
     "prestart": "eslint index.mjs",
-    "start": "rollup -f cjs index.mjs | buble > index.js",
-    "preexample": "eslint example/index.es",
-    "example": "cd example; rollup -f iife index.es | buble > index.js"
+    "start": "rollup -f cjs index.mjs > index.js",
+    "preexample": "eslint example/index.js",
+    "example": "cd example; rollup -f iife index.js > bundle.js"
   },
   "eslintConfig": {
     "extends": "@thewhodidthis"
   },
   "engines": {
-    "node": ">=6.4.0",
-    "npm": ">=3.11.0"
+    "node": ">=6.11.0",
+    "npm": ">=3.10.10"
   },
   "dependencies": {},
   "devDependencies": {
     "@thewhodidthis/eslint-config": "latest",
-    "buble": "latest",
     "eslint": "latest",
     "rollup": "latest",
     "tapeless": "latest"
   },
   "keywords": [
     "picknick",
+    "tabs",
     "pager"
   ],
   "author": "sChzs BkgNns <sotirios.bakagiannis@gmail.com> (https://www.thewhodidthis.com)",
