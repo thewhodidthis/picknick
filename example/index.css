@@ -1,12 +1,13 @@
 html {
   font: 16px/1.25 arial, sans-serif;
+  height: 100%;
 }
 
 body {
-  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
   margin: 0;
-  overflow: hidden;
-  padding: 0.5rem;
+  min-height: 100%;
 }
 
 a {
@@ -28,41 +29,38 @@ p {
 }
 
 figure {
-  left: 50%;
-  margin: -180px 0 0 -320px;
-  position: absolute;
-  text-align: center;
-  top: 50%;
+  margin: auto;
+  max-width: 640px;
+  padding: 1.5rem 0 1rem;
 }
 
 figcaption {
   margin: 0.5rem 0 0;
+  text-align: center;
+}
+
+img {
+  vertical-align: middle;
 }
 
 ul {
+  align-items: center;
   counter-reset: slide;
-  display: block;
-  font-size: 0;
-  height: 360px;
-  line-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   list-style: none;
   margin: 0;
   padding: 0;
-  white-space: nowrap;
-  width: 640px;
 }
 
 li {
   counter-increment: slide;
-  display: inline-block;
-  height: 100%;
 }
 
 li a {
   display: none;
-  height: 100%;
   position: relative;
-  width: 100%;
 }
 
 li a::before {
@@ -75,12 +73,21 @@ li a::before {
   top: 0;
 }
 
-img {
-  display: block;
-  height: 100%;
-  width: auto;
-}
-
 .is-active {
   display: block;
+}
+
+@media all and (max-width: 640px), all and (max-height: 500px) {
+  figure {
+    padding: 0;
+  }
+
+  figcaption {
+    display: none;
+  }
+
+  img {
+    max-height: 100vh;
+    max-width: 100%;
+  }
 }
