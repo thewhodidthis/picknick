@@ -28,10 +28,10 @@
     "npm": ">=3.10.10"
   },
   "devDependencies": {
-    "@thewhodidthis/eslint-config": "latest",
+    "@thewhodidthis/eslint-config": "^0.0.11",
     "eslint": "^6.8.0",
     "rollup": "^1.29.1",
-    "tapeless": "latest"
+    "tapeless": "^0.0.7"
   },
   "keywords": [
     "picknick",
