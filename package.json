@@ -2,42 +2,42 @@
   "name": "picknick",
   "version": "4.1.4",
   "description": "Helps select things",
-  "main": "index",
-  "module": "index.mjs",
-  "homepage": "https://github.com/thewhodidthis/picknick#readme",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/thewhodidthis/picknick.git"
-  },
-  "bugs": {
-    "url": "https://github.com/thewhodidthis/picknick/issues"
-  },
-  "scripts": {
-    "pretest": "eslint test.js",
-    "test": "node test",
-    "prestart": "eslint index.mjs",
-    "start": "rollup -f cjs index.mjs > index.js",
-    "preexample": "eslint example/index.js",
-    "example": "cd example; rollup -f iife index.js > bundle.js"
-  },
-  "eslintConfig": {
-    "extends": "@thewhodidthis"
-  },
-  "engines": {
-    "node": ">=6.11.0",
-    "npm": ">=3.10.10"
-  },
-  "devDependencies": {
-    "@thewhodidthis/eslint-config": "^0.0.11",
-    "eslint": "^6.8.0",
-    "rollup": "^1.29.1",
-    "tapeless": "^0.0.7"
-  },
   "keywords": [
     "picknick",
     "tabs",
     "pager"
   ],
+  "homepage": "https://github.com/thewhodidthis/picknick#readme",
+  "bugs": {
+    "url": "https://github.com/thewhodidthis/picknick/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thewhodidthis/picknick.git"
+  },
+  "license": "Unlicense",
   "author": "sChzs BkgNns <sotirios.bakagiannis@gmail.com> (https://www.thewhodidthis.com)",
-  "license": "Unlicense"
+  "main": "index",
+  "module": "index.mjs",
+  "scripts": {
+    "preexample": "eslint example/index.js",
+    "example": "cd example; rollup -f iife index.js > bundle.js",
+    "prestart": "eslint index.mjs",
+    "start": "rollup -f cjs index.mjs > index.js",
+    "pretest": "eslint test.js",
+    "test": "node test"
+  },
+  "eslintConfig": {
+    "extends": "@thewhodidthis"
+  },
+  "devDependencies": {
+    "@thewhodidthis/eslint-config": "^0.0.17",
+    "eslint": "^6.8.0",
+    "rollup": "^1.31.1",
+    "tapeless": "^0.0.9"
+  },
+  "engines": {
+    "node": ">=6.11.0",
+    "npm": ">=3.10.10"
+  }
 }
