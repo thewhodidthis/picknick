@@ -15,21 +15,25 @@
     "type": "git",
     "url": "git+https://github.com/thewhodidthis/picknick.git"
   },
-  "license": "Unlicense",
-  "author": "sChzs BkgNns <sotirios.bakagiannis@gmail.com> (https://www.thewhodidthis.com)",
+  "license": "ISC",
+  "author": "Sotiri Bakagiannis <sotirios.bakagiannis@gmail.com> (http://thewhodidthis.com)",
   "main": "index",
   "module": "index.mjs",
+  "directories": {
+    "example": "example"
+  },
   "scripts": {
     "preexample": "eslint example/index.js",
-    "example": "cd example; rollup -f iife index.js > bundle.js",
+    "example": "cd example; rollup -f iife -o bundle.js index.js",
     "prestart": "eslint index.mjs",
-    "start": "rollup -f cjs index.mjs > index.js",
+    "start": "rollup -f cjs -o index.js index.mjs",
     "pretest": "eslint test.js",
     "test": "node test"
   },
   "eslintConfig": {
     "extends": "@thewhodidthis"
   },
+  "dependencies": {},
   "devDependencies": {
     "@thewhodidthis/eslint-config": "^0.0.17",
     "eslint": "^6.8.0",
