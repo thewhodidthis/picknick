@@ -7,7 +7,7 @@ A mixin friendly pager useful for setting up rotating slideshows.
 Fetch latest from _npm_,
 
 ```sh
-# Includes import and require (CJS) compatible versions
+# Includes import (ESM) and require (CJS) compatible versions
 npm i picknick
 ```
 
