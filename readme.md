@@ -1,12 +1,20 @@
-> Mixin friendly pager useful for setting up rotating slideshows
+## about
 
-### Setup
+A mixin friendly pager useful for setting up rotating slideshows.
+
+## setup
+
+Fetch latest from _npm_,
+
 ```sh
-# Fetch latest from github
-npm i thewhodidthis/picknick
+# Includes import and require (CJS) compatible versions
+npm i picknick
 ```
 
-### Usage
+## usage
+
+Instantiate with optional arguments for total, starting index and a callback function. In return you get a plain object with `prev()` and `next()` methods attached.
+
 ```js
 import createPager from 'picknick'
 
