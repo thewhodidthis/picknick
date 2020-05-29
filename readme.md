@@ -7,13 +7,13 @@ A mixin friendly pager useful for setting up rotating slideshows.
 Fetch latest from _npm_,
 
 ```sh
-# Includes import (ESM) and require (CJS) compatible versions
+# Includes ESM (import) and CJS (require) compatible versions
 npm i picknick
 ```
 
 ## usage
 
-Instantiate with optional arguments for total, starting index and a callback function. In return you get a plain object with `prev()` and `next()` methods attached.
+Instantiate with optional arguments for the wrap-around total and start position, plus a function to call with each index change. In return you get a plain object with `prev()` and `next()` methods attached for moving that index back and forth. For example,
 
 ```js
 import createPager from 'picknick'
