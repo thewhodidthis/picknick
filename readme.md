@@ -18,6 +18,7 @@ Instantiate with optional arguments for the wrap-around total and start position
 ```js
 import createPager from 'picknick'
 
+// Page through a dozen elements
 const pager = createPager(12, 0, console.log)
 
 // Decrement, prints 0
