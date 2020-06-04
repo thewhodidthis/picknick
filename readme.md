@@ -4,7 +4,7 @@ A mixin friendly pager useful for setting up rotating slideshows.
 
 ## setup
 
-Fetch latest from the _npm_ registry,
+Fetch latest from the _npm_ registry:
 
 ```sh
 # Includes ESM (import) and CJS (require) compatible versions
