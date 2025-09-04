@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="Helps select things.">
+    <title>picknick.js</title>
+    <script src="example.js" type="module"></script>
+    <style>
+      html {
+        font: medium/normal sans-serif;
+        height: 100%;
+      }
+      body {
+        display: grid;
+        margin: 0;
+        min-height: 100%;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      p {
+        text-align: center;
+      }
+      img {
+        height: auto;
+        max-width: 100%;
+        object-fit: cover;
+        vertical-align: middle;
+      }
+      figcaption {
+        margin: 0 2.25rem 0 0.75rem;
+      }
+      figure {
+        font-size: small;
+        margin: auto;
+        max-width: 40rem;
+        width: 100%;
+      }
+      li a {
+        display: none;
+        height: 100%;
+        position: relative;
+        text-align: right;
+      }
+      li a::before {
+        color: rgba(255, 255, 255, 0.4);
+        content: counter(slide, decimal-leading-zero);
+        font: bold medium/1 sans-serif;
+        position: absolute;
+        right: 0.75rem;
+        top: 0.75rem;
+      }
+      li {
+        counter-increment: slide;
+        list-style: none;
+      }
+      ul {
+        aspect-ratio: 16 / 9;
+        counter-reset: slide;
+        margin: auto;
+        padding: 0;
+        text-align: center;
+      }
+      .pick {
+        display: inline-block;
+      }
+      @media (prefers-color-scheme: dark) {
+        html {
+          background: #1e1e1e;
+          color: #efefef;
+        }
+        a {
+          color: inherit;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <figure>
+      <ul title="Tap or hit space to page through">
+        <li>
+          <a id="example-1" href="#example-2" class="pick">
+            <!-- https://static.standard.co.uk/s3fs&#45;public/thumbnails/image/2015/05/13/13/jasondonovan.jpg -->
+            <img src="jason-1.jpg" alt="Jason Donovan smiling towards interviewer" height="360" width="540">
+          </a>
+        </li>
+        <li>
+          <a id="example-2" href="#example-3">
+            <!-- https://static1.squarespace.com/static/537308a4e4b0cb63d6f66d8e/53739df9e4b04b1ccbd451e0/53900304e4b0843fb8d849a9/1401946896621/Jason+Donovan.jpg -->
+            <img src="jason-2.jpg" alt="Jason Donovan en face, black and white" height="360" width="273">
+          </a>
+        </li>
+        <li>
+          <a id="example-3" href="#example-4">
+            <!-- https://static.standard.co.uk/s3fs&#45;public/thumbnails/image/2012/05/04/08/jason&#45;donovan.gif -->
+            <img src="jason-3.gif" alt="Jason Donovan close up" height="360" width="540">
+          </a>
+        </li>
+        <li>
+          <a id="example-4" href="#example-5">
+            <!-- https://ichef.bbci.co.uk/images/ic/960x540/p01bqstr.jpg -->
+            <img src="jason-4.jpg" alt="Jason Donovan's younger self grinning" height="360" width="640">
+          </a>
+        </li>
+        <li>
+          <a id="example-5" href="#example-6">
+            <!-- https://yt3.ggpht.com/FJf7ZxVnR&#45;TV3qQpMTWBr8Ts37a5rcqhY8hO7fOFllkALUpA6x7abvffzgVBzy3zWOkn6lZmcRIWC2o3=s900&#45;nd&#45;c&#45;c0xffffffff&#45;rj&#45;k&#45;no -->
+            <img src="jason-5.jpg" alt="A bearded Jason Donovan" height="360" width="360">
+          </a>
+        </li>
+      </ul>
+      <figcaption>
+        <p><strong><a href="https://github.com/thewhodidthis/picknick">picknick.js</a></strong> Helps select things</p>
+      </figcaption>
+    </figure>
+  </body>
+</html>

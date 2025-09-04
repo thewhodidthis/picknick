@@ -1,0 +1,22 @@
+{
+  "name": "picknick",
+  "description": "Helps select things",
+  "main": "main.js",
+  "moduleType": "es6",
+  "license": "Unlicense",
+  "ignore": [
+    ".*",
+    "README*",
+    "LICENSE",
+    "package.json"
+  ],
+  "keywords": [
+    "gallery",
+    "menu",
+    "slides",
+    "tabs"
+  ],
+  "authors": [
+    "Thepersonwhodidthis <me@thewhodidthis.com> (http://thewhodidthis.com)"
+  ]
+}
